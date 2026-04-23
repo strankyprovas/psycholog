@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Krásy kolem nás — Mgr. Martin Poláček | fotogalerie</title>
+  <meta name="description" content="Fotky, které jsem zachytil kolem sebe. Detaily, příroda, kultura, člověčina. A postupně i má vlastní výtvarná tvorba." />
+  <meta name="theme-color" content="#f5efe4" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    .page-hero h1 em{font-style:italic;color:var(--clay)}
+    .kk-intro{
+      background:var(--linen);padding:clamp(40px,5vw,70px) 0;
+      border-top:1px solid var(--linen-3);border-bottom:1px solid var(--linen-3);
+    }
+    .kk-intro-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+      max-width:1000px;margin:0 auto;
+    }
+    .kk-intro blockquote{
+      font-family:'Cormorant Garamond',serif;font-style:italic;
+      font-size:clamp(1.4rem,2.8vw,1.9rem);line-height:1.45;color:var(--ink);
+    }
+    .kk-intro blockquote::before{
+      content:'"';font-family:'Cormorant Garamond',serif;font-size:4rem;
+      line-height:0.5;color:var(--clay);display:block;margin-bottom:12px;
+    }
+    .kk-intro p{color:var(--ink-soft);line-height:1.75;font-size:1.02rem;margin-top:22px}
+    .kk-intro .tag{
+      display:inline-block;font-size:.72rem;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--sage-600);
+      margin-bottom:14px;font-weight:500;
+    }
+
+    #kategorie{background:var(--linen-2)}
+    .kat-header{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+    .kat-header h2{max-width:16ch}
+    .kat-header h2 em{font-style:italic;color:var(--clay)}
+    .kat-note{
+      background:var(--sage-50);border:1px solid var(--sage-200);
+      padding:14px 20px;border-radius:var(--radius);
+      font-size:.88rem;color:var(--sage-800);max-width:340px;line-height:1.55;
+    }
+    .kat-note strong{display:block;font-family:'Cormorant Garamond',serif;font-size:1.05rem;margin-bottom:2px}
+
+    .kat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .kat-card{
+      background:var(--linen);border:1px solid var(--linen-3);
+      border-radius:var(--radius);overflow:hidden;
+      display:flex;flex-direction:column;
+      transition:transform .3s,box-shadow .3s;
+    }
+    .kat-card:hover{transform:translateY(-3px);box-shadow:0 14px 36px -22px rgba(28,35,33,.28)}
+    .kat-placeholder{
+      aspect-ratio:4/3;background:var(--linen-2);
+      display:flex;align-items:center;justify-content:center;
+      position:relative;overflow:hidden;
+    }
+    .kat-placeholder::before{
+      content:"";position:absolute;inset:16px;
+      border:1px dashed var(--linen-3);border-radius:var(--radius);
+    }
+    .kat-placeholder .ico{
+      font-size:2.2rem;color:var(--sage-400);font-family:'Cormorant Garamond',serif;
+      font-style:italic;font-weight:500;z-index:1;
+    }
+    .kat-body{padding:22px 22px 24px}
+    .kat-body h3{
+      font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.35rem;
+      color:var(--sage-800);margin-bottom:6px;
+    }
+    .kat-body p{font-size:.88rem;color:var(--muted);line-height:1.6}
+    .kat-body .count{
+      display:inline-block;margin-top:12px;font-size:.72rem;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--clay);font-weight:500;
+    }
+
+    #arteterapie-teaser{background:var(--linen)}
+    .at-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,72px);align-items:center}
+    .at-img{aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;box-shadow:0 24px 60px -30px rgba(28,35,33,.3);max-width:420px}
+    .at-img img{width:100%;height:100%;object-fit:cover;display:block}
+    .at-text h2{margin-bottom:22px}
+    .at-text h2 em{color:var(--clay);font-style:italic}
+    .at-text p{color:var(--ink-soft);line-height:1.8;font-size:1.02rem;margin-bottom:16px}
+    .at-text .caption{
+      display:inline-block;margin-top:16px;padding:10px 16px;
+      background:var(--sage-50);border-left:2px solid var(--sage-400);
+      font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;
+      color:var(--sage-800);
+    }
+
+    @media (max-width:1000px){
+      .kat-grid{grid-template-columns:repeat(2,1fr)}
+      .kk-intro-grid{grid-template-columns:1fr;gap:30px}
+    }
+    @media (max-width:820px){
+      .at-grid{grid-template-columns:1fr;gap:32px}
+      .at-img{max-width:360px;margin:0 auto}
+    }
+    @media (max-width:600px){
+      .kat-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<div id="demo-banner">
+  UKÁZKA · <span>toto je návrh, jak by mohl vypadat Váš nový web</span>
+</div>
+<div id="progress"></div>
+
+<header id="header">
+  <div class="wrap">
+    <div class="nav">
+      <a href="index.html" class="brand" aria-label="Mgr. Martin Poláček">
+        <span class="brand-mark">mp</span>
+        <span class="brand-text">
+          <strong>Mgr. Martin Poláček</strong>
+          <small>Psychoterapie · Plzeň</small>
+        </span>
+      </a>
+      <nav aria-label="Hlavní navigace">
+        <ul>
+          <li><a href="o-mne.html">O mně</a></li>
+          <li><a href="index.html#pomoc">Co nabízím</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="akce.html">Akce</a></li>
+          <li><a href="index.html#cenik">Ceník</a></li>
+          <li><a href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+      <a href="tel:+420739019133" class="cta-phone"><span>+420 739 019 133</span></a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Otevřít menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" role="navigation">
+    <a href="o-mne.html">O mně</a>
+    <a href="index.html#pomoc">Co nabízím</a>
+    <a href="blog.html">Blog</a>
+    <a href="akce.html">Akce</a>
+    <a href="krasy-kolem-nas.html">Krásy kolem nás</a>
+    <a href="index.html#cenik">Ceník</a>
+    <a href="odkazy.html">Odkazy v nouzi</a>
+    <a href="index.html#kontakt">Kontakt</a>
+    <a href="tel:+420739019133">+420 739 019 133</a>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="wrap">
+    <div data-r>
+      <div class="page-crumbs"><a href="index.html">Úvod</a> &nbsp;/&nbsp; Krásy kolem nás</div>
+      <div class="eyebrow">Fotogalerie</div>
+      <h1 style="margin-top:14px">Krásy, které <em>nás obklopují</em></h1>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO / KRÉDO -->
+<section class="kk-intro">
+  <div class="wrap kk-intro-grid">
+    <div data-r>
+      <span class="tag">Krédo galerie</span>
+      <blockquote>
+        Rád se dívám okolo sebe a&nbsp;zvěčňuji to, co mě zaujme, do&nbsp;svého
+        mobilu. Tak se s&nbsp;vámi tady o&nbsp;to chci podělit.
+      </blockquote>
+    </div>
+    <div data-r data-d="1">
+      <p>
+        Galerii budu <strong style="color:var(--sage-800);font-weight:500">pravidelně doplňovat</strong> — přibližně
+        jednou za&nbsp;14&nbsp;dní o&nbsp;několik nových fotek. Fotky jsou rozděleny
+        do&nbsp;čtyř tematických oblastí: detaily, příroda, kultura a&nbsp;člověčina.
+      </p>
+      <p>
+        Postupně se sem budou dostávat i&nbsp;ukázky mojí vlastní výtvarné
+        tvorby — výtvarno je pro mě způsob, jak prožívat svět.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- KATEGORIE -->
+<section id="kategorie">
+  <div class="wrap">
+    <div class="kat-header">
+      <div data-r>
+        <div class="eyebrow">Kategorie</div>
+        <h2 style="margin-top:14px">Čtyři pohledy <em>okolo sebe</em></h2>
+      </div>
+      <div class="kat-note" data-r data-d="1">
+        <strong>Brzy se plní</strong>
+        Galerii postupně doplňuji — první fotky přibudou během následujících týdnů.
+      </div>
+    </div>
+
+    <div class="kat-grid">
+      <article class="kat-card" data-r>
+        <div class="kat-placeholder"><span class="ico">Detail</span></div>
+        <div class="kat-body">
+          <h3>Detaily</h3>
+          <p>Drobné věci, kterých si obvykle nevšímáme — ale stojí za to se zastavit.</p>
+          <span class="count">Fotky přibývají</span>
+        </div>
+      </article>
+
+      <article class="kat-card" data-r data-d="1">
+        <div class="kat-placeholder"><span class="ico">Příroda</span></div>
+        <div class="kat-body">
+          <h3>Příroda</h3>
+          <p>Lesy, hory, řeky, oblohy. Místo, kam chodím dobíjet baterky.</p>
+          <span class="count">Fotky přibývají</span>
+        </div>
+      </article>
+
+      <article class="kat-card" data-r data-d="2">
+        <div class="kat-placeholder"><span class="ico">Kultura</span></div>
+        <div class="kat-body">
+          <h3>Kultura</h3>
+          <p>Architektura, umění, historická místa, divadlo — všechno, co mě osloví.</p>
+          <span class="count">Fotky přibývají</span>
+        </div>
+      </article>
+
+      <article class="kat-card" data-r data-d="3">
+        <div class="kat-placeholder"><span class="ico">Člověčina</span></div>
+        <div class="kat-body">
+          <h3>Člověčina</h3>
+          <p>Momenty, v&nbsp;nichž se v&nbsp;lidech objevuje něco, co stojí za&nbsp;to zachytit.</p>
+          <span class="count">Fotky přibývají</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ARTETERAPIE TEASER -->
+<section id="arteterapie-teaser">
+  <div class="wrap">
+    <div class="at-grid">
+      <div class="at-img" data-r>
+        <img src="photos/akvarel-1.jpg" alt="Ukázka vlastní arteterapeutické tvorby" />
+      </div>
+      <div class="at-text" data-r data-d="1">
+        <div class="eyebrow">Moje vlastní tvorba</div>
+        <h2>Když obraz <em>promluví</em><br>za mě i&nbsp;za klienty</h2>
+        <p>
+          Výtvarno mě baví — proto jsem si i&nbsp;pro soukromou praxi našel
+          pracovnu s&nbsp;menším ateliérem. Postupně sem přidám ukázky svých
+          vlastních prací s&nbsp;krátkým komentářem, co pro mě znamenají.
+        </p>
+        <p>
+          Do budoucna bych rád nabízel některé práce i&nbsp;ke&nbsp;koupi —
+          třeba jako podporu pro klienty, kteří by terapii těžko financovali.
+          Výtvarno jako cesta k&nbsp;sobě i&nbsp;k&nbsp;druhým.
+        </p>
+        <span class="caption">„Výtvarno mě moc baví. To je takový můj sen."</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand">
+          <span class="brand-mark">mp</span>
+          <span class="brand-text">
+            <strong>Mgr. Martin Poláček</strong>
+            <small>Psychoterapie · Plzeň</small>
+          </span>
+        </a>
+        <p>Psychoterapeutická praxe pro dospívající, mladé dospělé&nbsp;a rodiny. Gestalt&nbsp;přístup a arteterapie.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Web</h4>
+        <ul>
+          <li><a href="o-mne.html">O mně</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="akce.html">Akce</a></li>
+          <li><a href="krasy-kolem-nas.html">Krásy kolem nás</a></li>
+          <li><a href="index.html#cenik">Ceník</a></li>
+          <li><a href="odkazy.html">Odkazy v&nbsp;nouzi</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:+420739019133">+420 739 019 133</a></li>
+          <li><a href="mailto:info@terapiepolacek.cz">info@terapiepolacek.cz</a></li>
+          <li>Zikmunda Wintra 21</li>
+          <li>301 00 Plzeň</li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Najdete mě i&nbsp;zde</h4>
+        <ul>
+          <li><a href="https://czap.cz/adresar" target="_blank" rel="noopener">Adresář ČAP&nbsp;↗</a></li>
+          <li><a href="https://dusevnizdravi.vzp.cz/seznam-terapeutu/" target="_blank" rel="noopener">VZP Duševní zdraví&nbsp;↗</a></li>
+          <li><a href="https://app.terapie.cz/" target="_blank" rel="noopener">Terapie.cz&nbsp;↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Mgr. Martin Poláček · IČO 09438661</span>
+      <span>Web: <a href="https://strankyprovas.cz" target="_blank" rel="noopener">StránkyProVás</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const progress=document.getElementById('progress');
+  const header=document.getElementById('header');
+  window.addEventListener('scroll',()=>{const pct=(window.scrollY/Math.max(1,document.body.scrollHeight-window.innerHeight))*100;progress.style.width=pct+'%';header.classList.toggle('scrolled',window.scrollY>10)});
+  const btn=document.getElementById('hamburgerBtn'),menu=document.getElementById('mobileMenu');
+  btn.addEventListener('click',()=>{const open=menu.classList.toggle('open');btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',open)});
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false')}));
+  const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('[data-r]').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>

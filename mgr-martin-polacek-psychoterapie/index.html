@@ -255,6 +255,11 @@
       display:block;font-size:.76rem;letter-spacing:.05em;color:var(--muted);
       margin-top:6px;line-height:1.4;
     }
+    .hero-credentials .cred-badge img{
+      height:56px;width:auto;margin-bottom:2px;
+      transition:transform .25s;
+    }
+    .hero-credentials .cred-badge a:hover img{transform:scale(1.06)}
 
     /* ========================================================= */
     /* QUOTE STRIP                                                */
@@ -623,9 +628,9 @@
       <nav aria-label="Hlavní navigace">
         <ul>
           <li><a href="o-mne.html">O mně</a></li>
-          <li><a href="#pomoc">Komu pomáhám</a></li>
-          <li><a href="#metoda">Jak pracuji</a></li>
-          <li><a href="#prubeh">Průběh</a></li>
+          <li><a href="#pomoc">Co nabízím</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="akce.html">Akce</a></li>
           <li><a href="#cenik">Ceník</a></li>
           <li><a href="#kontakt">Kontakt</a></li>
         </ul>
@@ -640,10 +645,13 @@
   </div>
   <div id="mobileMenu" role="navigation" aria-label="Mobilní navigace">
     <a href="o-mne.html">O mně</a>
-    <a href="#pomoc">Komu pomáhám</a>
+    <a href="#pomoc">Co nabízím</a>
     <a href="#metoda">Jak pracuji</a>
-    <a href="#prubeh">Průběh terapie</a>
+    <a href="blog.html">Blog</a>
+    <a href="akce.html">Akce</a>
+    <a href="krasy-kolem-nas.html">Krásy kolem nás</a>
     <a href="#cenik">Ceník</a>
+    <a href="odkazy.html">Odkazy</a>
     <a href="#kontakt">Kontakt</a>
     <a href="tel:+420739019133">+420 739 019 133</a>
   </div>
@@ -685,9 +693,11 @@
             <strong>Gestalt</strong>
             <span>Dokončený terapeutický<br>výcvik (2023)</span>
           </div>
-          <div class="cred">
-            <strong>ČAP</strong>
-            <span>Člen České asociace<br>pro psychoterapii</span>
+          <div class="cred cred-badge">
+            <a href="https://czap.cz/adresar" target="_blank" rel="noopener" aria-label="Řádný člen České asociace pro psychoterapii">
+              <img src="photos/cap-badge.png" alt="ČAP – Řádný člen" />
+            </a>
+            <span>Řádný člen České asociace<br>pro psychoterapii</span>
           </div>
         </div>
       </div>
@@ -962,6 +972,17 @@
 
         <div class="cenik-row">
           <div>
+            <div class="cenik-row-title">Individuální seberozvojová arteterapie</div>
+            <div class="cenik-row-desc">Hlubší arteterapeutická práce — tvorba jako cesta k&nbsp;sobě. Materiál a&nbsp;pomůcky v&nbsp;ceně.</div>
+          </div>
+          <div class="cenik-row-price">
+            <strong>1&nbsp;800&nbsp;Kč</strong>
+            <span>90 minut</span>
+          </div>
+        </div>
+
+        <div class="cenik-row">
+          <div>
             <div class="cenik-row-title">Rodič na sezení mladého klienta</div>
             <div class="cenik-row-desc">Pokud je rodič pozván k&nbsp;sezení nezletilého klienta, účtuje se standardní cena sezení.</div>
           </div>
@@ -1084,11 +1105,11 @@
         <h4>Web</h4>
         <ul>
           <li><a href="o-mne.html">O mně</a></li>
-          <li><a href="o-mne.html#vzdelani">Vzdělání</a></li>
-          <li><a href="o-mne.html#praxe">Praxe</a></li>
-          <li><a href="o-mne.html#pristup">Přístup</a></li>
-          <li><a href="#pomoc">Komu pomáhám</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="akce.html">Akce</a></li>
+          <li><a href="krasy-kolem-nas.html">Krásy kolem nás</a></li>
           <li><a href="#cenik">Ceník</a></li>
+          <li><a href="odkazy.html">Odkazy v&nbsp;nouzi</a></li>
         </ul>
       </div>
 
@@ -1103,11 +1124,11 @@
       </div>
 
       <div class="foot-col">
-        <h4>Odkazy v nouzi</h4>
+        <h4>Najdete mě i&nbsp;zde</h4>
         <ul>
-          <li>Linka bezpečí · 116&nbsp;111</li>
-          <li>Linka první psychické pomoci · 116&nbsp;123</li>
-          <li>Záchranná služba · 155</li>
+          <li><a href="https://czap.cz/adresar" target="_blank" rel="noopener">Adresář ČAP&nbsp;↗</a></li>
+          <li><a href="https://dusevnizdravi.vzp.cz/seznam-terapeutu/" target="_blank" rel="noopener">VZP Duševní zdraví&nbsp;↗</a></li>
+          <li><a href="https://app.terapie.cz/" target="_blank" rel="noopener">Terapie.cz&nbsp;↗</a></li>
         </ul>
       </div>
     </div>
