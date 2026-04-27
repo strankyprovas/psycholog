@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mgr. Ing. Petra Juráková | Psychologie & Psychoterapie Frýdek-Místek</title>
+  <meta name="description" content="Psychologická a psychoterapeutická praxe ve Frýdku-Místku. Konzultace, mindfulness, filiální terapie. Logoterapie a existenciální analýza. Mgr. Ing. Petra Juráková." />
+  <meta name="theme-color" content="#3a4a3f" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mgr. Ing. Petra Juráková | Psychologie & Psychoterapie" />
+  <meta property="og:description" content="Bezpečný prostor pro hledání potřeb, souladu a změny. Frýdek-Místek." />
+  <meta property="og:image" content="photos/hero.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============== TOKENS ============== */
+    :root {
+      --cream:        #f6f1ea;
+      --cream-2:      #ece4d7;
+      --paper:        #fbf8f3;
+      --sage:         #6b7d6a;
+      --sage-2:       #4f5f50;
+      --sage-3:       #3a4a3f;
+      --sage-light:   #a8b6a3;
+      --sand:         #c9b793;
+      --sand-2:       #b09e76;
+      --ink:          #1f241f;
+      --ink-2:        #3b403a;
+      --muted:        #6e7570;
+      --line:         #d8cfc1;
+      --shadow-sm:    0 2px 12px rgba(58, 74, 63, 0.08);
+      --shadow-md:    0 12px 36px rgba(58, 74, 63, 0.12);
+      --shadow-lg:    0 24px 60px rgba(58, 74, 63, 0.18);
+      --radius-sm:    6px;
+      --radius:       12px;
+      --radius-lg:    20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; transition: color .2s, opacity .2s; }
+    ul { list-style: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+      color: var(--sage-3);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    h1 { font-size: clamp(2.6rem, 6.2vw, 4.6rem); font-weight: 500; }
+    h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); }
+    h3 { font-size: clamp(1.4rem, 2.6vw, 1.85rem); }
+    h4 { font-size: clamp(1.05rem, 1.5vw, 1.2rem); font-weight: 600; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+    section { padding: 110px 0; position: relative; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--sage-2);
+      margin-bottom: 20px;
+    }
+    .eyebrow::before {
+      content: ''; display: block;
+      width: 32px; height: 1px; background: var(--sage);
+    }
+
+    /* ============== BUTTONS ============== */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 10px;
+      padding: 16px 30px;
+      font-size: 0.95rem; font-weight: 500;
+      letter-spacing: 0.04em;
+      border-radius: 999px;
+      transition: all .25s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--sage-3);
+      color: var(--cream);
+      border: 1px solid var(--sage-3);
+    }
+    .btn-primary:hover {
+      background: var(--ink-2);
+      border-color: var(--ink-2);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--sage-3);
+      border: 1px solid var(--sage);
+    }
+    .btn-ghost:hover {
+      background: var(--sage-3);
+      color: var(--cream);
+    }
+
+    /* ============== NAV ============== */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 22px 0;
+      transition: all .3s ease;
+      background: rgba(246, 241, 234, 0);
+    }
+    .nav.scrolled {
+      background: rgba(246, 241, 234, 0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-sm);
+      padding: 14px 0;
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.45rem;
+      color: var(--sage-3);
+      letter-spacing: 0.01em;
+      line-height: 1;
+    }
+    .nav-logo small {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 36px;
+    }
+    .nav-links a {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--ink-2);
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--sage-3); }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -6px; left: 0; right: 0;
+      height: 1px; background: var(--sage-3);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .3s ease;
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { padding: 10px 22px; font-size: 0.85rem; }
+    .nav-burger {
+      display: none;
+      width: 38px; height: 38px;
+      flex-direction: column; justify-content: center; align-items: center;
+      gap: 5px;
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--sage-3); transition: all .3s ease;
+    }
+
+    /* ============== HERO ============== */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: 130px; padding-bottom: 80px;
+      background: linear-gradient(135deg, var(--cream) 0%, var(--cream-2) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute;
+      top: -200px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(168, 182, 163, 0.25) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 8px 18px;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--sage-3);
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow .dot {
+      width: 7px; height: 7px; background: var(--sage); border-radius: 50%;
+    }
+    .hero h1 { margin-bottom: 24px; }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--sage-2);
+      font-weight: 400;
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--ink-2);
+      max-width: 520px;
+      margin-bottom: 38px;
+      line-height: 1.75;
+    }
+    .hero-cta {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+    .hero-meta {
+      display: flex; gap: 50px;
+      padding-top: 36px;
+      border-top: 1px solid var(--line);
+      flex-wrap: wrap;
+    }
+    .hero-meta-item .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 500;
+      color: var(--sage-3);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .hero-meta-item .lab {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .hero-visual {
+      position: relative;
+      aspect-ratio: 4/5;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .hero-visual img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .hero-visual::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(58, 74, 63, 0.3) 100%);
+    }
+    .hero-quote {
+      position: absolute;
+      bottom: 30px; left: 30px; right: 30px;
+      padding: 20px 24px;
+      background: rgba(251, 248, 243, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--sage-3);
+      line-height: 1.5;
+      z-index: 3;
+    }
+    .hero-quote::before {
+      content: '"';
+      display: inline-block;
+      font-size: 2.4rem;
+      line-height: 0;
+      vertical-align: -0.6em;
+      margin-right: 8px;
+      color: var(--sand-2);
+      font-weight: 700;
+    }
+
+    /* ============== ABOUT ============== */
+    .about { background: var(--paper); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .about-image {
+      position: sticky; top: 120px;
+      aspect-ratio: 3/4;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      background: var(--cream-2);
+    }
+    .about-image img { width: 100%; height: 100%; object-fit: cover; }
+    .about-text h2 { margin-bottom: 28px; }
+    .about-text p {
+      font-size: 1.05rem;
+      color: var(--ink-2);
+      margin-bottom: 22px;
+      line-height: 1.85;
+    }
+    .about-text p:first-of-type::first-letter {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.6rem;
+      font-weight: 500;
+      float: left;
+      line-height: 0.9;
+      margin: 8px 12px 0 0;
+      color: var(--sage-3);
+    }
+    .about-credentials {
+      display: flex; gap: 32px;
+      margin-top: 36px; padding-top: 32px;
+      border-top: 1px solid var(--line);
+      flex-wrap: wrap;
+    }
+    .cred-item {
+      flex: 1;
+      min-width: 180px;
+    }
+    .cred-item .cred-label {
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 8px;
+    }
+    .cred-item .cred-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      color: var(--sage-3);
+      font-weight: 500;
+    }
+
+    /* ============== EDUCATION TIMELINE ============== */
+    .education {
+      background: var(--cream);
+      padding: 110px 0;
+    }
+    .education-head {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+    .education-head .eyebrow { justify-content: center; }
+    .education-head .eyebrow::before { display: block; }
+    .timeline {
+      max-width: 780px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 95px; top: 8px; bottom: 8px;
+      width: 1px; background: var(--line);
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 80px 32px 1fr;
+      gap: 24px;
+      align-items: start;
+      padding: 18px 0;
+    }
+    .timeline-year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--sage-3);
+      font-weight: 600;
+      text-align: right;
+      padding-top: 2px;
+    }
+    .timeline-dot {
+      width: 12px; height: 12px;
+      background: var(--cream);
+      border: 2px solid var(--sage-2);
+      border-radius: 50%;
+      margin: 10px auto 0;
+      position: relative;
+      z-index: 2;
+    }
+    .timeline-content h4 {
+      margin-bottom: 4px;
+      color: var(--ink);
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .timeline-content p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ============== SERVICES ============== */
+    .services { background: var(--paper); }
+    .services-head {
+      max-width: 760px;
+      margin-bottom: 70px;
+    }
+    .services-head h2 { margin-bottom: 18px; }
+    .services-head p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .service-card {
+      background: var(--cream);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all .35s ease;
+      border: 1px solid transparent;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--line);
+    }
+    .service-image {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--cream-2);
+    }
+    .service-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .service-card:hover .service-image img { transform: scale(1.05); }
+    .service-body {
+      padding: 32px 30px;
+    }
+    .service-body h3 { margin-bottom: 14px; }
+    .service-body p {
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .service-body .price {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--sage-3);
+      font-weight: 600;
+      padding: 6px 16px;
+      background: var(--cream-2);
+      border-radius: 999px;
+    }
+    .service-body .price small {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin-left: 4px;
+    }
+
+    /* ============== PRICING ============== */
+    .pricing { background: var(--sage-3); color: var(--cream); }
+    .pricing h2, .pricing h3, .pricing h4 { color: var(--cream); }
+    .pricing .eyebrow { color: var(--sage-light); }
+    .pricing .eyebrow::before { background: var(--sage-light); }
+    .pricing-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 70px;
+    }
+    .pricing-head .eyebrow { justify-content: center; }
+    .pricing-head p {
+      font-size: 1.05rem;
+      color: rgba(246, 241, 234, 0.75);
+      margin-top: 18px;
+      line-height: 1.75;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    .pricing-card {
+      background: rgba(246, 241, 234, 0.06);
+      border: 1px solid rgba(246, 241, 234, 0.12);
+      border-radius: var(--radius-lg);
+      padding: 38px 32px;
+      transition: all .3s ease;
+    }
+    .pricing-card:hover {
+      background: rgba(246, 241, 234, 0.1);
+      border-color: var(--sand);
+      transform: translateY(-4px);
+    }
+    .pricing-card-cat {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 12px;
+    }
+    .pricing-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 24px;
+    }
+    .pricing-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(246, 241, 234, 0.1);
+    }
+    .pricing-row:last-child { border-bottom: none; }
+    .pricing-row .name {
+      color: rgba(246, 241, 234, 0.85);
+      font-size: 0.95rem;
+    }
+    .pricing-row .name small {
+      display: block;
+      color: rgba(246, 241, 234, 0.5);
+      font-size: 0.78rem;
+      margin-top: 2px;
+    }
+    .pricing-row .amt {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--cream);
+      white-space: nowrap;
+      margin-left: 12px;
+    }
+    .insurance-box {
+      background: rgba(246, 241, 234, 0.06);
+      border: 1px solid rgba(246, 241, 234, 0.12);
+      border-radius: var(--radius-lg);
+      padding: 32px 36px;
+      max-width: 920px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .insurance-box h4 { margin-bottom: 12px; font-size: 1.1rem; }
+    .insurance-box p {
+      color: rgba(246, 241, 234, 0.78);
+      font-size: 0.96rem;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+    .insurance-list {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center;
+    }
+    .insurance-list span {
+      padding: 6px 16px;
+      background: rgba(246, 241, 234, 0.08);
+      border: 1px solid rgba(246, 241, 234, 0.15);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      color: var(--cream);
+    }
+
+    /* ============== COURSES ============== */
+    .courses { background: var(--cream); }
+    .courses-head {
+      display: flex; justify-content: space-between; align-items: end;
+      margin-bottom: 60px; gap: 30px; flex-wrap: wrap;
+    }
+    .courses-head h2 { max-width: 540px; }
+    .courses-head p {
+      max-width: 380px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+    .course-card {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 24px;
+      background: var(--paper);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      transition: all .3s ease;
+    }
+    .course-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .course-image {
+      aspect-ratio: 3/4;
+      background: var(--cream-2);
+      overflow: hidden;
+    }
+    .course-image img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .course-body {
+      padding: 26px 28px 26px 0;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .course-date {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .course-body h3 {
+      font-size: 1.3rem;
+      margin-bottom: 14px;
+      line-height: 1.25;
+    }
+    .course-loc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 14px;
+    }
+    .course-loc svg { flex-shrink: 0; }
+
+    /* ============== CONTACT ============== */
+    .contact {
+      background: var(--paper);
+      padding: 110px 0 80px;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .contact-text h2 { margin-bottom: 24px; }
+    .contact-text > p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+      line-height: 1.75;
+    }
+    .contact-list {
+      margin-bottom: 36px;
+    }
+    .contact-item {
+      display: flex; gap: 18px; align-items: flex-start;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .contact-item:last-child { border-bottom: none; }
+    .contact-icon {
+      width: 44px; height: 44px;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--sage-3);
+    }
+    .contact-info .lab {
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 4px;
+    }
+    .contact-info .val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--sage-3);
+      font-weight: 500;
+    }
+    .contact-info .val a:hover { color: var(--sand-2); }
+    .contact-map {
+      aspect-ratio: 4/5;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--line);
+    }
+    .contact-map iframe {
+      width: 100%; height: 100%; border: 0;
+      filter: saturate(0.85) hue-rotate(-10deg);
+    }
+
+    /* ============== FOOTER ============== */
+    footer {
+      background: var(--ink);
+      color: rgba(246, 241, 234, 0.7);
+      padding: 60px 0 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+    .footer-brand .nav-logo { color: var(--cream); }
+    .footer-brand .nav-logo small { color: rgba(246,241,234,0.5); }
+    .footer-brand p {
+      margin-top: 18px;
+      max-width: 300px;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: rgba(246, 241, 234, 0.55);
+    }
+    .footer-col h4 {
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .footer-col ul li {
+      margin-bottom: 10px;
+      font-size: 0.92rem;
+    }
+    .footer-col ul li a:hover { color: var(--sand); }
+    .footer-bottom {
+      padding-top: 28px;
+      border-top: 1px solid rgba(246, 241, 234, 0.12);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+      font-size: 0.84rem;
+      color: rgba(246, 241, 234, 0.45);
+    }
+    .footer-bottom a:hover { color: var(--cream); }
+
+    /* ============== RESPONSIVE ============== */
+    @media (max-width: 980px) {
+      section { padding: 80px 0; }
+      .hero { padding-top: 110px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 50px; }
+      .hero-visual { max-width: 480px; margin: 0 auto; aspect-ratio: 1/1; }
+      .hero-meta { gap: 30px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-image { position: static; max-width: 480px; aspect-ratio: 4/3; }
+      .services-grid { grid-template-columns: 1fr; gap: 24px; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .courses-grid { grid-template-columns: 1fr; }
+      .course-card { grid-template-columns: 140px 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .timeline-item {
+        grid-template-columns: 70px 24px 1fr;
+        gap: 16px;
+      }
+      .timeline::before { left: 80px; }
+      .timeline-year { font-size: 1.15rem; }
+      .hero h1 { font-size: 2.4rem; }
+      .hero-meta { gap: 24px; }
+      .hero-meta-item .num { font-size: 1.8rem; }
+      .course-card { grid-template-columns: 1fr; }
+      .course-image { aspect-ratio: 16/10; }
+      .course-body { padding: 22px 26px; }
+      .insurance-box { padding: 24px 22px; }
+      .pricing-card { padding: 28px 24px; }
+    }
+
+    @media (max-width: 460px) {
+      .container { padding: 0 20px; }
+      .btn { padding: 14px 22px; font-size: 0.88rem; }
+      .hero-cta { flex-direction: column; align-items: stretch; }
+      .hero-cta .btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============== NAV ============== -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-logo">
+        Petra Juráková
+        <small>Psychologie · Psychoterapie</small>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">O mně</a></li>
+        <li><a href="#services">Co nabízím</a></li>
+        <li><a href="#pricing">Ceník</a></li>
+        <li><a href="#courses">Kurzy</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-primary nav-cta">Objednat se</a>
+      <button class="nav-burger" aria-label="Menu" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ============== HERO ============== -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <span class="hero-eyebrow"><span class="dot"></span>Frýdek-Místek · Farní náměstí 51</span>
+          <h1>Bezpečný prostor<br><em>pro Vás i Vaše blízké.</em></h1>
+          <p class="hero-sub">
+            Psychologická a psychoterapeutická praxe založená na logoterapii a existenciální analýze. Společně hledáme Vaše potřeby, soulad v soužití se sebou a směřování ke změně.
+          </p>
+          <div class="hero-cta">
+            <a href="#contact" class="btn btn-primary">Objednat konzultaci →</a>
+            <a href="#about" class="btn btn-ghost">O mé práci</a>
+          </div>
+          <div class="hero-meta">
+            <div class="hero-meta-item">
+              <div class="num">10+</div>
+              <div class="lab">let praxe</div>
+            </div>
+            <div class="hero-meta-item">
+              <div class="num">750h</div>
+              <div class="lab">terapeutický výcvik</div>
+            </div>
+            <div class="hero-meta-item">
+              <div class="num">6</div>
+              <div class="lab">pojišťoven přispívá</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="photos/hero.png" alt="Psychologická praxe Petra Juráková" />
+          <div class="hero-quote">Vždy respektuji jedinečnost klienta a jeho cestu.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== ABOUT ============== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="photos/about.png" alt="Mgr. Ing. Petra Juráková" />
+        </div>
+        <div class="about-text">
+          <span class="eyebrow">O mně</span>
+          <h2>Mgr. Ing.<br>Petra Juráková</h2>
+          <p>Vystudovala jsem jednooborovou psychologii na Univerzitě Palackého v Olomouci. Absolvovala jsem psychoterapeutický výcvik v Logoterapii a existenciální analýze, ze kterého čerpám ve své psychoterapeutické praxi.</p>
+          <p>Má odborná cesta je bohatá na různorodé vzdělávání v oboru psychoterapie, neboť vždy respektuji jedinečnost klienta. Zaměřuji se na hledání potřeb, souladu v soužití se sebou a následné směřování ke změně.</p>
+          <p>Od roku 2014 pracuji v rodinné a manželské poradně jako psycholožka. Součástí mé práce je psychoterapie, posuzování a poradenství v oblasti rodinné péče. Mám zkušenost s krizovou intervencí, kterou jsem získala výcvikem a praxí na Lince bezpečí.</p>
+          <div class="about-credentials">
+            <div class="cred-item">
+              <div class="cred-label">Vzdělání</div>
+              <div class="cred-value">Univerzita Palackého Olomouc</div>
+            </div>
+            <div class="cred-item">
+              <div class="cred-label">Hlavní směr</div>
+              <div class="cred-value">Logoterapie & existenciální analýza</div>
+            </div>
+            <div class="cred-item">
+              <div class="cred-label">Praxe</div>
+              <div class="cred-value">od roku 2014</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== EDUCATION TIMELINE ============== -->
+  <section class="education" id="education">
+    <div class="container">
+      <div class="education-head">
+        <span class="eyebrow">Profesní vzdělávání</span>
+        <h2>Cesta vzděláváním</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2024</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Lektor Mindfulness ve vztazích</h4>
+            <p>RMT — Relation Mindfulness Training</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2022</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Terapeutické rodičovství, Filiální terapie, Terapie hrou</h4>
+            <p>Vzdělávací program ATTA a navazující terapeutické kurzy</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2019</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Terapie Sand Tray</h4>
+            <p>Dr. Madeleine De Little, Ph.D.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2017</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Dyadická vývojová psychoterapie</h4>
+            <p>Dan Hughes, Ph.D.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2016</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Logoterapie a existenciální analýza</h4>
+            <p>Dlouhodobý sebezkušenostní výcvik — 750 hodin</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2014</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Edukační rodičovská terapie (MANSIO)</h4>
+            <p>Univerzita Palackého Olomouc — jednooborová psychologie</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2007</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Výcvik v krizové intervenci</h4>
+            <p>Praxe na Lince bezpečí</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SERVICES ============== -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-head">
+        <span class="eyebrow">Co nabízím</span>
+        <h2>Konzultace, psychoterapie a kurzy<br>vedené individuálním přístupem.</h2>
+        <p>Pracuji s dospělými, páry, rodinami i dětmi. Konzultace a psychoterapii nabízím jak osobně ve Frýdku-Místku, tak on-line.</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-image">
+            <img src="photos/sluzba-konzultace.jpg" alt="Konzultace a psychoterapie" />
+          </div>
+          <div class="service-body">
+            <h3>Konzultace<br>a psychoterapie</h3>
+            <p>Individuální, párové a rodinné konzultace. Psychoterapie založená na logoterapii a existenciální analýze. Nabízím také on-line formu.</p>
+            <span class="price">od 800 Kč<small>/ sezení</small></span>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-image">
+            <img src="photos/sluzba-mindfulness.jpg" alt="Mindfulness" />
+          </div>
+          <div class="service-body">
+            <h3>Mindfulness</h3>
+            <p>Osmitýdenní program všímavosti pro lepší vztah se sebou i druhými. Pravidelná setkání zaměřená na soustředěné prožívání přítomnosti.</p>
+            <span class="price">5 900 Kč<small>/ 8 týdnů</small></span>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-image">
+            <img src="photos/sluzba-filialni.jpg" alt="Filiální terapie" />
+          </div>
+          <div class="service-body">
+            <h3>Filiální terapie</h3>
+            <p>Desetitýdenní program pro rodiče, který posiluje vztah s dítětem. Učíme se vést hru tak, aby dítě cítilo bezpečí, blízkost a porozumění.</p>
+            <span class="price">7 000 Kč<small>/ 10 týdnů</small></span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PRICING ============== -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="pricing-head">
+        <span class="eyebrow">Ceník služeb</span>
+        <h2>Transparentní podmínky.<br>Bez skrytých poplatků.</h2>
+        <p>Spolupracuji se zdravotními pojišťovnami, které poskytují příspěvky z programů psychosociální pomoci. Nabízím také dárkové poukazy na jakoukoliv službu.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-card-cat">Konzultace & terapie</div>
+          <h3>Sezení</h3>
+          <div class="pricing-row">
+            <div class="name">Individuální konzultace<small>50 minut</small></div>
+            <div class="amt">1 200 Kč</div>
+          </div>
+          <div class="pricing-row">
+            <div class="name">Párové / rodinné<small>90 minut</small></div>
+            <div class="amt">1 700 Kč</div>
+          </div>
+          <div class="pricing-row">
+            <div class="name">On-line konzultace<small>60 minut</small></div>
+            <div class="amt">800 Kč</div>
+          </div>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-card-cat">Mindfulness</div>
+          <h3>8týdenní program</h3>
+          <div class="pricing-row">
+            <div class="name">Mindfulness pro pokročilé<small>8 setkání · 2 hodiny</small></div>
+            <div class="amt">5 900 Kč</div>
+          </div>
+          <div class="pricing-row">
+            <div class="name">Workshopy & ukázková setkání<small>na dotaz</small></div>
+            <div class="amt">—</div>
+          </div>
+          <div class="pricing-row">
+            <div class="name">Dárkový poukaz<small>na jakoukoliv službu</small></div>
+            <div class="amt">✓</div>
+          </div>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-card-cat">Filiální terapie</div>
+          <h3>10týdenní program</h3>
+          <div class="pricing-row">
+            <div class="name">Filiální terapie<small>10 setkání · 2 hodiny</small></div>
+            <div class="amt">7 000 Kč</div>
+          </div>
+          <div class="pricing-row">
+            <div class="name">Pro rodiče s dětmi<small>posílení vztahu</small></div>
+            <div class="amt">✓</div>
+          </div>
+          <div class="pricing-row">
+            <div class="name">Individuální nastavení tempa<small>dle potřeb rodiny</small></div>
+            <div class="amt">✓</div>
+          </div>
+        </div>
+      </div>
+      <div class="insurance-box">
+        <h4>Příspěvky zdravotních pojišťoven</h4>
+        <p>Z programů psychosociální pomoci čerpejte řádově 2 000 – 6 000 Kč na osobu a rok.</p>
+        <div class="insurance-list">
+          <span>VZP (111)</span>
+          <span>ČPZP (205)</span>
+          <span>OZP (207)</span>
+          <span>ZP Škoda (209)</span>
+          <span>ZPMV (211)</span>
+          <span>RBP (213)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== COURSES ============== -->
+  <section class="courses" id="courses">
+    <div class="container">
+      <div class="courses-head">
+        <div>
+          <span class="eyebrow">Kurzy & workshopy</span>
+          <h2>Vzdělávání s terapeutickým<br>přesahem.</h2>
+        </div>
+        <p>Pravidelně otevírám kurzy zaměřené na rodičovské dovednosti, mindfulness a komunikaci ve vztazích. Konají se přímo ve Frýdku-Místku.</p>
+      </div>
+      <div class="courses-grid">
+        <article class="course-card">
+          <div class="course-image">
+            <img src="photos/kurz-rodicovstvi.jpg" alt="Kurz rodičovských dovedností" />
+          </div>
+          <div class="course-body">
+            <div>
+              <div class="course-date">11 — 11 — 2025</div>
+              <h3>Kurz rodičovských dovedností</h3>
+            </div>
+            <div class="course-loc">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Farní náměstí 51, Frýdek-Místek
+            </div>
+          </div>
+        </article>
+        <article class="course-card">
+          <div class="course-image">
+            <img src="photos/kurz-vzdelavaci.png" alt="Vzdělávací kurz s terapeutickým přesahem" />
+          </div>
+          <div class="course-body">
+            <div>
+              <div class="course-date">02 — 10 — 2025</div>
+              <h3>Vzdělávací kurz s terapeutickým přesahem</h3>
+            </div>
+            <div class="course-loc">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Farní náměstí 51, Frýdek-Místek
+            </div>
+          </div>
+        </article>
+        <article class="course-card">
+          <div class="course-image">
+            <img src="photos/kurz-mindfulness-workshop.jpg" alt="Workshop Mindfulness ve vztazích a komunikaci" />
+          </div>
+          <div class="course-body">
+            <div>
+              <div class="course-date">27 — 02 — 2025</div>
+              <h3>Workshop Mindfulness ve vztazích a komunikaci</h3>
+            </div>
+            <div class="course-loc">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Farní náměstí 51, Frýdek-Místek
+            </div>
+          </div>
+        </article>
+        <article class="course-card">
+          <div class="course-image">
+            <img src="photos/kurz-mindfulness-vztahy.png" alt="Mindfulness ve vztazích" />
+          </div>
+          <div class="course-body">
+            <div>
+              <div class="course-date">13 — 03 — 2025</div>
+              <h3>Mindfulness ve vztazích</h3>
+            </div>
+            <div class="course-loc">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Farní náměstí 51, Frýdek-Místek
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CONTACT ============== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-text">
+          <span class="eyebrow">Kontakt</span>
+          <h2>Začněme společně.</h2>
+          <p>Pokud se chcete objednat nebo máte jakékoliv otázky, ozvěte se. Pokud Vám telefon neberu, právě probíhá psychoterapie — ozvu se zpět co nejdříve.</p>
+          <div class="contact-list">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div class="contact-info">
+                <div class="lab">Telefon</div>
+                <div class="val"><a href="tel:+420731443344">+420 731 443 344</a></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="contact-info">
+                <div class="lab">E-mail</div>
+                <div class="val"><a href="mailto:info@psychologiejurakova.cz">info@psychologiejurakova.cz</a></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="contact-info">
+                <div class="lab">Adresa praxe</div>
+                <div class="val">Farní náměstí 51, Frýdek-Místek</div>
+              </div>
+            </div>
+          </div>
+          <a href="tel:+420731443344" class="btn btn-primary">Zavolat ihned →</a>
+        </div>
+        <div class="contact-map">
+          <iframe src="https://www.google.com/maps?q=Farn%C3%AD%20n%C3%A1m%C4%9Bst%C3%AD%2051%2C%20Fr%C3%BDdek-M%C3%ADstek&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            Petra Juráková
+            <small>Psychologie · Psychoterapie</small>
+          </div>
+          <p>Psychologická a psychoterapeutická praxe ve Frýdku-Místku. Logoterapie, existenciální analýza, mindfulness a filiální terapie.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Praxe</h4>
+          <ul>
+            <li><a href="#about">O mně</a></li>
+            <li><a href="#services">Co nabízím</a></li>
+            <li><a href="#pricing">Ceník</a></li>
+            <li><a href="#courses">Kurzy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kontakt</h4>
+          <ul>
+            <li><a href="tel:+420731443344">+420 731 443 344</a></li>
+            <li><a href="mailto:info@psychologiejurakova.cz">info@psychologiejurakova.cz</a></li>
+            <li>Farní náměstí 51, Frýdek-Místek</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Mgr. Ing. Petra Juráková · Psychologie & Psychoterapie</span>
+        <span>Web vytvořilo <a href="https://strankyprovas.cz" target="_blank" rel="noopener">StránkyProVás</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky nav
+    const nav = document.getElementById('nav');
+    const onScroll = () => {
+      if (window.scrollY > 30) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Mobile menu (simple toggle)
+    const burger = document.getElementById('burger');
+    const links = document.querySelector('.nav-links');
+    burger?.addEventListener('click', () => {
+      if (links.style.display === 'flex') {
+        links.style.display = '';
+      } else {
+        links.style.display = 'flex';
+        links.style.position = 'absolute';
+        links.style.top = '100%';
+        links.style.right = '20px';
+        links.style.background = 'var(--cream)';
+        links.style.padding = '20px 28px';
+        links.style.borderRadius = 'var(--radius)';
+        links.style.boxShadow = 'var(--shadow-md)';
+        links.style.flexDirection = 'column';
+        links.style.gap = '14px';
+      }
+    });
+  </script>
+</body>
+</html>
