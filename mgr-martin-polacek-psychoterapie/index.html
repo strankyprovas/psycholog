@@ -95,13 +95,14 @@
     /* ========================================================= */
     header{
       position:sticky;top:0;z-index:100;
-      background:rgba(245,239,228,.88);
-      backdrop-filter:blur(14px) saturate(140%);
-      -webkit-backdrop-filter:blur(14px) saturate(140%);
+      background:var(--linen);
       border-bottom:1px solid transparent;
-      transition:border-color .3s;
+      transition:border-color .3s,box-shadow .3s;
     }
-    header.scrolled{border-color:rgba(74,106,84,.15)}
+    header.scrolled{
+      border-color:rgba(74,106,84,.15);
+      box-shadow:0 6px 30px -20px rgba(28,35,33,.25);
+    }
     .nav{
       display:flex;align-items:center;justify-content:space-between;
       height:78px;
@@ -452,16 +453,10 @@
       letter-spacing:-0.015em;color:var(--linen);
     }
     .pristup-intro p{color:var(--sage-200);line-height:1.8;font-size:1.1rem}
-    .pristup-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+    .pristup-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px}
     .pristup-card{
-      background:rgba(245,239,228,.06);
-      border:1px solid rgba(245,239,228,.14);
-      padding:44px 38px;border-radius:var(--radius);
-      transition:background .3s,border-color .3s;
-    }
-    .pristup-card:hover{
-      background:rgba(245,239,228,.1);
-      border-color:rgba(216,164,143,.3);
+      background:transparent;border:0;
+      padding:0;border-radius:0;
     }
     .pristup-card-head{
       display:flex;flex-direction:column;gap:12px;
