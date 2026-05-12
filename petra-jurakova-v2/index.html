@@ -348,11 +348,18 @@
     }
 
     /* ============== ABOUT ============== */
-    .about { background: var(--cream); padding: 0; }
+    .about { background: var(--paper); padding: 0; }
+    .about-inner {
+      padding: 110px 0;
+    }
+    .about-banner-section {
+      background: var(--paper);
+      padding: 0;
+    }
     .about-banner {
       width: 100%;
       aspect-ratio: 21 / 7;
-      max-height: 480px;
+      max-height: 520px;
       overflow: hidden;
       position: relative;
       background: var(--sage-3);
@@ -364,12 +371,12 @@
     }
     .about-banner::after {
       content:''; position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(58,74,63,0.0) 55%, rgba(246,241,234,0.95) 100%);
+      background: linear-gradient(180deg, rgba(58,74,63,0.0) 55%, rgba(246,241,234,0.92) 100%);
       pointer-events:none;
     }
     .about-banner-quote {
       position: absolute;
-      bottom: 36px; left: 50%;
+      bottom: 40px; left: 50%;
       transform: translateX(-50%);
       z-index: 2;
       font-family: 'Cormorant Garamond', serif;
@@ -380,13 +387,6 @@
       max-width: 720px;
       padding: 0 28px;
       line-height: 1.4;
-    }
-    .about-text-section {
-      background: var(--paper);
-      padding: 0;
-    }
-    .about-inner {
-      padding: 110px 0;
     }
     .about-grid {
       display: grid;
@@ -1191,8 +1191,45 @@
     </a>
   </section>
 
-  <!-- ============== ABOUT BANNER (photo + quote) ============== -->
+  <!-- ============== ABOUT TEXT (Mgr. Ing. Petra Juráková + bio) ============== -->
   <section class="about" id="about">
+    <div class="about-inner">
+      <div class="about-grid">
+        <div class="about-heading">
+          <span class="eyebrow">O mně</span>
+          <h2>Mgr. Ing.<br>Petra Juráková</h2>
+          <div class="about-heading-meta">
+            Psycholožka<br>
+            Psychoterapeutka<br>
+            Lektorka mindfulness
+          </div>
+        </div>
+        <div class="about-text">
+          <p>Vystudovala jsem jednooborovou psychologii na Univerzitě Palackého v&nbsp;Olomouci. Absolvovala jsem psychoterapeutický výcvik v&nbsp;Logoterapii a&nbsp;existenciální analýze, z&nbsp;kterého čerpám v&nbsp;mé psychoterapeutické praxi.</p>
+          <p>Má odborná cesta je bohatá na&nbsp;různorodé vzdělávání v&nbsp;oboru psychoterapie, neboť vždy respektuji jedinečnost klienta. Zaměřuji se na&nbsp;hledání potřeb, souladu v&nbsp;soužití se sebou a&nbsp;následné směřování ke&nbsp;změně.</p>
+          <p>Od&nbsp;roku 2014 pracuji v&nbsp;rodinné a&nbsp;manželské poradně jako psycholožka. Součástí mé práce je psychoterapie, posuzování a&nbsp;poradenství v&nbsp;oblasti rodinné péče.</p>
+          <p>Mám zkušenost s&nbsp;krizovou intervencí, kterou jsem získala výcvikem a&nbsp;praxí při práci krizové intervence na&nbsp;Lince bezpečí.</p>
+          <div class="about-credentials">
+            <div class="cred-item">
+              <div class="cred-label">Vzdělání</div>
+              <div class="cred-value">Univerzita Palackého Olomouc</div>
+            </div>
+            <div class="cred-item">
+              <div class="cred-label">Hlavní směr</div>
+              <div class="cred-value">Logoterapie &amp; existenciální analýza</div>
+            </div>
+            <div class="cred-item">
+              <div class="cred-label">Praxe</div>
+              <div class="cred-value">od roku 2014</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== ABOUT BANNER (photo + quote, full-width) ============== -->
+  <section class="about-banner-section">
     <div class="about-banner">
       <img src="photos/about.png" alt="Mgr. Ing. Petra Juráková" />
       <div class="about-banner-quote">"Vždy respektuji jedinečnost klienta a&nbsp;jeho cestu."</div>
@@ -1261,43 +1298,6 @@
           <div class="timeline-content">
             <h4>Výcvik v krizové intervenci</h4>
             <p>Praxe na Lince bezpečí</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============== ABOUT TEXT (po timeline) ============== -->
-  <section class="about-text-section">
-    <div class="about-inner">
-      <div class="about-grid">
-        <div class="about-heading">
-          <span class="eyebrow">O mně</span>
-          <h2>Mgr. Ing.<br>Petra Juráková</h2>
-          <div class="about-heading-meta">
-            Psycholožka<br>
-            Psychoterapeutka<br>
-            Lektorka mindfulness
-          </div>
-        </div>
-        <div class="about-text">
-          <p>Vystudovala jsem jednooborovou psychologii na Univerzitě Palackého v&nbsp;Olomouci. Absolvovala jsem psychoterapeutický výcvik v&nbsp;Logoterapii a&nbsp;existenciální analýze, z&nbsp;kterého čerpám v&nbsp;mé psychoterapeutické praxi.</p>
-          <p>Má odborná cesta je bohatá na&nbsp;různorodé vzdělávání v&nbsp;oboru psychoterapie, neboť vždy respektuji jedinečnost klienta. Zaměřuji se na&nbsp;hledání potřeb, souladu v&nbsp;soužití se sebou a&nbsp;následné směřování ke&nbsp;změně.</p>
-          <p>Od&nbsp;roku 2014 pracuji v&nbsp;rodinné a&nbsp;manželské poradně jako psycholožka. Součástí mé práce je psychoterapie, posuzování a&nbsp;poradenství v&nbsp;oblasti rodinné péče.</p>
-          <p>Mám zkušenost s&nbsp;krizovou intervencí, kterou jsem získala výcvikem a&nbsp;praxí při práci krizové intervence na&nbsp;Lince bezpečí.</p>
-          <div class="about-credentials">
-            <div class="cred-item">
-              <div class="cred-label">Vzdělání</div>
-              <div class="cred-value">Univerzita Palackého Olomouc</div>
-            </div>
-            <div class="cred-item">
-              <div class="cred-label">Hlavní směr</div>
-              <div class="cred-value">Logoterapie &amp; existenciální analýza</div>
-            </div>
-            <div class="cred-item">
-              <div class="cred-label">Praxe</div>
-              <div class="cred-value">od roku 2014</div>
-            </div>
           </div>
         </div>
       </div>
