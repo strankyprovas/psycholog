@@ -121,7 +121,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 22px 0;
       transition: all .3s ease;
-      background: rgba(246, 241, 234, 0);
+      background: transparent;
     }
     .nav.scrolled {
       background: rgba(246, 241, 234, 0.96);
@@ -136,38 +136,66 @@
       font-family: 'Cormorant Garamond', serif;
       font-weight: 600;
       font-size: 1.45rem;
-      color: var(--sage-3);
+      color: var(--cream);
       letter-spacing: 0.01em;
       line-height: 1;
+      transition: color .3s ease;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.35);
     }
+    .nav.scrolled .nav-logo { color: var(--sage-3); text-shadow: none; }
     .nav-logo small {
       display: block;
       font-family: 'Inter', sans-serif;
       font-size: 0.62rem;
       letter-spacing: 0.32em;
       text-transform: uppercase;
-      color: var(--sage);
+      color: rgba(246,241,234,0.85);
       font-weight: 500;
       margin-top: 4px;
+      transition: color .3s ease;
     }
+    .nav.scrolled .nav-logo small { color: var(--sage); }
     .nav-links {
       display: flex; align-items: center; gap: 36px;
     }
     .nav-links a {
       font-size: 0.92rem;
       font-weight: 500;
-      color: var(--ink-2);
+      color: var(--cream);
       position: relative;
+      transition: color .3s ease;
+      text-shadow: 0 1px 10px rgba(0,0,0,0.3);
     }
-    .nav-links a:hover { color: var(--sage-3); }
+    .nav.scrolled .nav-links a { color: var(--ink-2); text-shadow: none; }
+    .nav-links a:hover { color: var(--sand); }
+    .nav.scrolled .nav-links a:hover { color: var(--sage-3); }
     .nav-links a::after {
       content: ''; position: absolute; bottom: -6px; left: 0; right: 0;
-      height: 1px; background: var(--sage-3);
+      height: 1px; background: currentColor;
       transform: scaleX(0); transform-origin: left;
       transition: transform .3s ease;
     }
     .nav-links a:hover::after { transform: scaleX(1); }
-    .nav-cta { padding: 10px 22px; font-size: 0.85rem; }
+    .nav-cta {
+      padding: 10px 22px; font-size: 0.85rem;
+      background: var(--cream);
+      color: var(--sage-3);
+      border-color: var(--cream);
+    }
+    .nav-cta:hover {
+      background: var(--sand);
+      border-color: var(--sand);
+      color: var(--sage-3);
+    }
+    .nav.scrolled .nav-cta {
+      background: var(--sage-3);
+      color: var(--cream);
+      border-color: var(--sage-3);
+    }
+    .nav.scrolled .nav-cta:hover {
+      background: var(--ink-2);
+      border-color: var(--ink-2);
+    }
     .nav-burger {
       display: none;
       width: 38px; height: 38px;
@@ -176,142 +204,211 @@
     }
     .nav-burger span {
       display: block; width: 22px; height: 1.5px;
-      background: var(--sage-3); transition: all .3s ease;
+      background: var(--cream); transition: all .3s ease;
     }
+    .nav.scrolled .nav-burger span { background: var(--sage-3); }
 
-    /* ============== HERO ============== */
+    /* ============== HERO (full-bleed) ============== */
     .hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding-top: 130px; padding-bottom: 80px;
-      background: linear-gradient(135deg, var(--cream) 0%, var(--cream-2) 100%);
       position: relative;
+      min-height: 100vh;
+      width: 100%;
       overflow: hidden;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
     }
-    .hero::before {
-      content: ''; position: absolute;
-      top: -200px; right: -100px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(168, 182, 163, 0.25) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
     }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 80px;
-      align-items: center;
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+    .hero-bg::after {
+      content:'';
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(58,74,63,0.35) 0%, rgba(58,74,63,0) 30%, rgba(58,74,63,0) 55%, rgba(58,74,63,0.78) 100%),
+        linear-gradient(90deg, rgba(58,74,63,0.45) 0%, rgba(58,74,63,0) 50%);
+      pointer-events:none;
+    }
+    .hero-content {
       position: relative;
       z-index: 2;
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: clamp(60px, 9vh, 110px);
+      padding-top: 160px;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 28px;
     }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 14px;
       padding: 8px 18px;
-      background: rgba(255,255,255,0.6);
-      border: 1px solid var(--line);
+      background: rgba(246, 241, 234, 0.18);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(246, 241, 234, 0.32);
       border-radius: 999px;
       font-size: 0.78rem; font-weight: 500;
       letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--sage-3);
-      margin-bottom: 28px;
+      color: var(--cream);
+      margin-bottom: 26px;
     }
     .hero-eyebrow .dot {
-      width: 7px; height: 7px; background: var(--sage); border-radius: 50%;
+      width: 7px; height: 7px; background: var(--sand); border-radius: 50%;
     }
-    .hero h1 { margin-bottom: 24px; }
+    .hero h1 {
+      color: var(--cream);
+      max-width: 14ch;
+      margin-bottom: 22px;
+      text-shadow: 0 2px 30px rgba(0,0,0,0.35);
+    }
     .hero h1 em {
       font-style: italic;
-      color: var(--sage-2);
+      color: var(--sand);
       font-weight: 400;
     }
     .hero-sub {
-      font-size: 1.15rem;
-      color: var(--ink-2);
-      max-width: 520px;
+      font-size: 1.18rem;
+      color: rgba(246,241,234,0.92);
+      max-width: 560px;
       margin-bottom: 38px;
       line-height: 1.75;
+      text-shadow: 0 1px 20px rgba(0,0,0,0.35);
     }
     .hero-cta {
       display: flex; gap: 14px; flex-wrap: wrap;
-      margin-bottom: 56px;
+      margin-bottom: 50px;
+    }
+    .hero-cta .btn-primary {
+      background: var(--cream);
+      color: var(--sage-3);
+      border-color: var(--cream);
+    }
+    .hero-cta .btn-primary:hover {
+      background: var(--sand);
+      color: var(--sage-3);
+      border-color: var(--sand);
+    }
+    .hero-cta .btn-ghost {
+      color: var(--cream);
+      border-color: rgba(246,241,234,0.5);
+    }
+    .hero-cta .btn-ghost:hover {
+      background: rgba(246,241,234,0.14);
+      color: var(--cream);
     }
     .hero-meta {
-      display: flex; gap: 50px;
-      padding-top: 36px;
-      border-top: 1px solid var(--line);
+      display: flex; gap: 56px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(246,241,234,0.22);
       flex-wrap: wrap;
     }
     .hero-meta-item .num {
       font-family: 'Cormorant Garamond', serif;
       font-size: 2.4rem; font-weight: 500;
-      color: var(--sage-3);
+      color: var(--cream);
       line-height: 1;
       margin-bottom: 6px;
     }
     .hero-meta-item .lab {
       font-size: 0.82rem;
       letter-spacing: 0.08em;
-      color: var(--muted);
+      color: rgba(246,241,234,0.78);
       text-transform: uppercase;
     }
-    .hero-visual {
-      position: relative;
-      aspect-ratio: 4/5;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-    }
-    .hero-visual img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
-    .hero-visual::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(180deg, transparent 60%, rgba(58, 74, 63, 0.3) 100%);
-    }
-    .hero-quote {
+    .hero-scroll {
       position: absolute;
-      bottom: 30px; left: 30px; right: 30px;
-      padding: 20px 24px;
-      background: rgba(251, 248, 243, 0.95);
-      backdrop-filter: blur(10px);
-      border-radius: var(--radius);
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.05rem;
-      color: var(--sage-3);
-      line-height: 1.5;
+      bottom: 28px; left: 50%;
+      transform: translateX(-50%);
       z-index: 3;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 10px;
+      color: rgba(246,241,234,0.7);
+      font-size: 0.7rem; letter-spacing: 0.32em; text-transform: uppercase;
+      animation: scroll-bob 2.4s ease-in-out infinite;
     }
-    .hero-quote::before {
-      content: '"';
-      display: inline-block;
-      font-size: 2.4rem;
-      line-height: 0;
-      vertical-align: -0.6em;
-      margin-right: 8px;
-      color: var(--sand-2);
-      font-weight: 700;
+    .hero-scroll .line {
+      width: 1px; height: 38px;
+      background: linear-gradient(180deg, rgba(246,241,234,0.7), rgba(246,241,234,0));
+    }
+    @keyframes scroll-bob {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
     }
 
     /* ============== ABOUT ============== */
-    .about { background: var(--paper); }
+    .about { background: var(--paper); padding-top: 0; }
+    .about-banner {
+      width: 100%;
+      aspect-ratio: 21 / 7;
+      max-height: 480px;
+      overflow: hidden;
+      position: relative;
+      background: var(--sage-3);
+    }
+    .about-banner img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+    .about-banner::after {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(58,74,63,0.0) 60%, rgba(251,248,243,0.95) 100%);
+      pointer-events:none;
+    }
+    .about-banner-quote {
+      position: absolute;
+      bottom: 36px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      color: var(--sage-3);
+      text-align: center;
+      max-width: 720px;
+      padding: 0 28px;
+      line-height: 1.4;
+    }
+    .about-inner {
+      padding: 100px 0;
+    }
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1.3fr;
+      grid-template-columns: 1fr 1.4fr;
       gap: 80px;
       align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 28px;
     }
-    .about-image {
-      position: sticky; top: 120px;
-      aspect-ratio: 3/4;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
-      background: var(--cream-2);
+    .about-heading h2 { margin-bottom: 20px; }
+    .about-heading {
+      position: sticky;
+      top: 120px;
     }
-    .about-image img { width: 100%; height: 100%; object-fit: cover; }
-    .about-text h2 { margin-bottom: 28px; }
+    .about-heading-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sage);
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      margin-top: 28px;
+      line-height: 1.8;
+    }
     .about-text p {
       font-size: 1.05rem;
       color: var(--ink-2);
@@ -328,10 +425,11 @@
       color: var(--sage-3);
     }
     .about-credentials {
-      display: flex; gap: 32px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
       margin-top: 36px; padding-top: 32px;
       border-top: 1px solid var(--line);
-      flex-wrap: wrap;
     }
     .cred-item {
       flex: 1;
@@ -476,6 +574,70 @@
       margin-left: 4px;
     }
 
+    /* ============== MINDFULNESS DEEP ============== */
+    .mindfulness {
+      background: var(--cream-2);
+      position: relative;
+      overflow: hidden;
+    }
+    .mindfulness::before {
+      content:''; position:absolute;
+      top:-200px; right:-200px;
+      width:600px; height:600px;
+      background: radial-gradient(circle, rgba(107,125,106,0.25), transparent 65%);
+      border-radius: 50%;
+      pointer-events:none;
+    }
+    .mindfulness::after {
+      content:''; position:absolute;
+      bottom:-200px; left:-200px;
+      width:500px; height:500px;
+      background: radial-gradient(circle, rgba(201,183,147,0.18), transparent 65%);
+      border-radius: 50%;
+      pointer-events:none;
+    }
+    .mindfulness-inner { position: relative; z-index: 2; max-width: 980px; margin: 0 auto; padding: 0 28px; }
+    .mindfulness-head { text-align: center; margin-bottom: 60px; }
+    .mindfulness-head .eyebrow { justify-content: center; }
+    .mindfulness-head .eyebrow::before { display: block; }
+    .mindfulness-head h2 { max-width: 24ch; margin: 0 auto 18px; }
+    .mindfulness-head p {
+      font-size: 1.1rem; color: var(--ink-2);
+      max-width: 60ch; margin: 0 auto;
+      line-height: 1.8;
+    }
+    .mindfulness-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 50px;
+    }
+    .mindfulness-card {
+      background: var(--paper);
+      border-radius: var(--radius-lg);
+      padding: 44px 40px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+    .mindfulness-card h3 {
+      font-size: 1.5rem; margin-bottom: 18px;
+      color: var(--sage-3);
+    }
+    .mindfulness-card h3::before {
+      content:''; display: inline-block;
+      width: 6px; height: 6px;
+      background: var(--sand-2);
+      border-radius: 50%;
+      transform: translateY(-6px);
+      margin-right: 12px;
+    }
+    .mindfulness-card p {
+      color: var(--ink-2); font-size: 1rem;
+      line-height: 1.85; margin-bottom: 16px;
+    }
+    .mindfulness-card p:last-child { margin-bottom: 0; }
+    .mindfulness-card strong { color: var(--sage-3); font-weight: 600; }
+
     /* ============== PRICING ============== */
     .pricing { background: var(--sage-3); color: var(--cream); }
     .pricing h2, .pricing h3, .pricing h4 { color: var(--cream); }
@@ -587,57 +749,140 @@
       color: var(--muted);
       line-height: 1.7;
     }
-    .courses-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
+    .courses-list {
+      display: flex; flex-direction: column; gap: 22px;
     }
-    .course-card {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 24px;
+    .course-item {
       background: var(--paper);
       border-radius: var(--radius-lg);
-      overflow: hidden;
       border: 1px solid var(--line);
-      transition: all .3s ease;
-    }
-    .course-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-    .course-image {
-      aspect-ratio: 3/4;
-      background: var(--cream-2);
       overflow: hidden;
+      transition: box-shadow .3s ease, border-color .3s ease;
     }
-    .course-image img {
-      width: 100%; height: 100%; object-fit: cover;
+    .course-item[open] { box-shadow: var(--shadow-md); border-color: var(--sand-2); }
+    .course-summary {
+      display: grid;
+      grid-template-columns: 180px 1fr auto;
+      gap: 30px;
+      align-items: center;
+      padding: 20px 26px 20px 0;
+      cursor: pointer;
+      list-style: none;
+      transition: background .25s ease;
     }
-    .course-body {
-      padding: 26px 28px 26px 0;
-      display: flex; flex-direction: column; justify-content: space-between;
+    .course-summary::-webkit-details-marker { display: none; }
+    .course-summary:hover { background: rgba(58,74,63,0.03); }
+    .course-thumb {
+      width: 100%;
+      height: 160px;
+      overflow: hidden;
+      background: var(--cream-2);
+      border-radius: var(--radius);
+      margin-left: 20px;
     }
+    .course-thumb img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .course-head-text { min-width: 0; }
     .course-date {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--sage);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       font-weight: 600;
     }
-    .course-body h3 {
-      font-size: 1.3rem;
-      margin-bottom: 14px;
+    .course-head-text h3 {
+      font-size: 1.35rem;
+      margin-bottom: 10px;
       line-height: 1.25;
     }
     .course-loc {
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       color: var(--muted);
       display: flex; align-items: center; gap: 8px;
-      margin-top: 14px;
     }
     .course-loc svg { flex-shrink: 0; }
+    .course-toggle {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--sage-3);
+      color: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .3s ease, background .3s ease;
+      flex-shrink: 0;
+    }
+    .course-item[open] .course-toggle { transform: rotate(45deg); background: var(--sand-2); }
+    .course-detail {
+      padding: 0 26px 32px 226px;
+      border-top: 1px solid var(--line);
+      margin-top: 0;
+    }
+    .course-detail-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 40px;
+      padding-top: 26px;
+    }
+    .course-detail-content p {
+      color: var(--ink-2);
+      font-size: 0.96rem;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+    .course-detail-content p strong { color: var(--sage-3); }
+    .course-detail-content h4 {
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sage-3);
+      margin: 22px 0 10px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+    }
+    .course-info-box {
+      background: var(--cream-2);
+      border-radius: var(--radius);
+      padding: 24px 26px;
+      font-size: 0.92rem;
+      align-self: start;
+    }
+    .course-info-box dl {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 8px 16px;
+    }
+    .course-info-box dt {
+      font-weight: 600;
+      color: var(--sage-3);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .course-info-box dd {
+      color: var(--ink-2);
+      font-size: 0.92rem;
+    }
+    .course-info-box dd.price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      color: var(--sage-3);
+      font-weight: 600;
+    }
+    .course-cta {
+      margin-top: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      background: var(--sage-3);
+      color: var(--cream);
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all .25s ease;
+    }
+    .course-cta:hover { background: var(--ink-2); transform: translateY(-2px); }
 
     /* ============== CONTACT ============== */
     .contact {
@@ -646,9 +891,9 @@
     }
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1.05fr;
       gap: 60px;
-      align-items: center;
+      align-items: start;
     }
     .contact-text h2 { margin-bottom: 24px; }
     .contact-text > p {
@@ -690,15 +935,95 @@
     }
     .contact-info .val a:hover { color: var(--sand-2); }
     .contact-map {
-      aspect-ratio: 4/5;
+      aspect-ratio: 16/9;
       border-radius: var(--radius-lg);
       overflow: hidden;
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-sm);
       border: 1px solid var(--line);
+      margin-top: 24px;
     }
     .contact-map iframe {
       width: 100%; height: 100%; border: 0;
       filter: saturate(0.85) hue-rotate(-10deg);
+    }
+    .contact-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .contact-form-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .contact-form {
+      background: var(--cream);
+      padding: 36px 38px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+    .contact-form .form-head { margin-bottom: 24px; }
+    .contact-form .form-head h3 { font-size: 1.5rem; }
+    .contact-form label {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      display: block;
+      width: 100%;
+      margin-top: 6px;
+      padding: 12px 16px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      font: inherit;
+      font-size: 0.95rem;
+      color: var(--ink);
+      letter-spacing: 0;
+      text-transform: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--sage);
+      box-shadow: 0 0 0 3px rgba(107,125,106,0.15);
+    }
+    .contact-form textarea { resize: vertical; min-height: 100px; }
+    .contact-form .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .contact-form label.checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.78rem;
+      letter-spacing: 0;
+      text-transform: none;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 10px 0 20px;
+    }
+    .contact-form label.checkbox input {
+      width: auto;
+      margin: 3px 0 0 0;
+      padding: 0;
+      flex-shrink: 0;
+    }
+    .contact-form button {
+      width: 100%;
+      padding: 14px 24px;
+      font-size: 0.95rem;
+      font-weight: 500;
     }
 
     /* ============== FOOTER ============== */
@@ -749,16 +1074,28 @@
     /* ============== RESPONSIVE ============== */
     @media (max-width: 980px) {
       section { padding: 80px 0; }
-      .hero { padding-top: 110px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 50px; }
-      .hero-visual { max-width: 480px; margin: 0 auto; aspect-ratio: 1/1; }
+      .hero-content { padding-top: 130px; padding-bottom: 80px; align-items: flex-end; }
+      .hero h1 { font-size: clamp(2.2rem, 7vw, 3.4rem); }
+      .hero-sub { font-size: 1.02rem; }
       .hero-meta { gap: 30px; }
-      .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .about-image { position: static; max-width: 480px; aspect-ratio: 4/3; }
+      .hero-meta-item .num { font-size: 1.9rem; }
+      .hero-bg img { object-position: center 25%; }
+      .about-banner { aspect-ratio: 16 / 9; max-height: 360px; }
+      .about-banner-quote { font-size: 1.05rem; bottom: 24px; }
+      .about-inner { padding: 70px 0; }
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .about-heading { position: static; }
+      .about-credentials { grid-template-columns: 1fr; gap: 18px; }
       .services-grid { grid-template-columns: 1fr; gap: 24px; }
+      .mindfulness-cols { grid-template-columns: 1fr; gap: 22px; }
       .pricing-grid { grid-template-columns: 1fr; }
-      .courses-grid { grid-template-columns: 1fr; }
-      .course-card { grid-template-columns: 140px 1fr; }
+      .courses-list { gap: 18px; }
+      .course-summary { grid-template-columns: 120px 1fr 44px; gap: 18px; padding: 16px 16px 16px 0; }
+      .course-thumb { max-height: 130px; }
+      .course-detail { padding: 0 18px 24px; }
+      .course-detail-grid { grid-template-columns: 1fr; gap: 20px; padding-top: 22px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-form .form-row { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; gap: 40px; }
       .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     }
@@ -801,7 +1138,8 @@
       </a>
       <ul class="nav-links">
         <li><a href="#about">O mně</a></li>
-        <li><a href="#services">Co nabízím</a></li>
+        <li><a href="#services">Nabízím</a></li>
+        <li><a href="#mindfulness">Mindfulness</a></li>
         <li><a href="#pricing">Ceník</a></li>
         <li><a href="#courses">Kurzy</a></li>
         <li><a href="#contact">Kontakt</a></li>
@@ -811,56 +1149,66 @@
     </div>
   </nav>
 
-  <!-- ============== HERO ============== -->
+  <!-- ============== HERO (full-bleed) ============== */ -->
   <section class="hero" id="hero">
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-text">
-          <span class="hero-eyebrow"><span class="dot"></span>Frýdek-Místek · Farní náměstí 51</span>
-          <h1>Bezpečný prostor<br><em>pro Vás i Vaše blízké.</em></h1>
-          <p class="hero-sub">
-            Psychologická a psychoterapeutická praxe založená na logoterapii a existenciální analýze. Společně hledáme Vaše potřeby, soulad v soužití se sebou a směřování ke změně.
-          </p>
-          <div class="hero-cta">
-            <a href="#contact" class="btn btn-primary">Objednat konzultaci →</a>
-            <a href="#about" class="btn btn-ghost">O mé práci</a>
-          </div>
-          <div class="hero-meta">
-            <div class="hero-meta-item">
-              <div class="num">10+</div>
-              <div class="lab">let praxe</div>
-            </div>
-            <div class="hero-meta-item">
-              <div class="num">750h</div>
-              <div class="lab">terapeutický výcvik</div>
-            </div>
-            <div class="hero-meta-item">
-              <div class="num">6</div>
-              <div class="lab">pojišťoven přispívá</div>
-            </div>
-          </div>
+    <div class="hero-bg">
+      <img src="photos/hero.png" alt="Mgr. Ing. Petra Juráková — psycholožka" />
+    </div>
+    <div class="hero-content">
+      <div class="hero-inner">
+        <span class="hero-eyebrow"><span class="dot"></span>Frýdek-Místek · Farní náměstí 51</span>
+        <h1>Vítám Vás. <em>Společně najdeme cestu.</em></h1>
+        <p class="hero-sub">
+          Psychologická a psychoterapeutická praxe založená na logoterapii a existenciální analýze. Společně hledáme Vaše potřeby, soulad v soužití se sebou a směřování ke změně.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">Objednat konzultaci →</a>
+          <a href="#about" class="btn btn-ghost">O mé práci</a>
         </div>
-        <div class="hero-visual">
-          <img src="photos/hero.png" alt="Psychologická praxe Petra Juráková" />
-          <div class="hero-quote">Vždy respektuji jedinečnost klienta a jeho cestu.</div>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <div class="num">10+</div>
+            <div class="lab">let praxe</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="num">750h</div>
+            <div class="lab">terapeutický výcvik</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="num">6</div>
+            <div class="lab">pojišťoven přispívá</div>
+          </div>
         </div>
       </div>
     </div>
+    <a href="#about" class="hero-scroll" aria-label="Scrollovat dolů">
+      <span>Více o mě</span>
+      <span class="line"></span>
+    </a>
   </section>
 
   <!-- ============== ABOUT ============== -->
   <section class="about" id="about">
-    <div class="container">
+    <div class="about-banner">
+      <img src="photos/about.png" alt="Mgr. Ing. Petra Juráková" />
+      <div class="about-banner-quote">"Vždy respektuji jedinečnost klienta a&nbsp;jeho cestu."</div>
+    </div>
+    <div class="about-inner">
       <div class="about-grid">
-        <div class="about-image">
-          <img src="photos/about.png" alt="Mgr. Ing. Petra Juráková" />
-        </div>
-        <div class="about-text">
+        <div class="about-heading">
           <span class="eyebrow">O mně</span>
           <h2>Mgr. Ing.<br>Petra Juráková</h2>
-          <p>Vystudovala jsem jednooborovou psychologii na Univerzitě Palackého v Olomouci. Absolvovala jsem psychoterapeutický výcvik v Logoterapii a existenciální analýze, ze kterého čerpám ve své psychoterapeutické praxi.</p>
-          <p>Má odborná cesta je bohatá na různorodé vzdělávání v oboru psychoterapie, neboť vždy respektuji jedinečnost klienta. Zaměřuji se na hledání potřeb, souladu v soužití se sebou a následné směřování ke změně.</p>
-          <p>Od roku 2014 pracuji v rodinné a manželské poradně jako psycholožka. Součástí mé práce je psychoterapie, posuzování a poradenství v oblasti rodinné péče. Mám zkušenost s krizovou intervencí, kterou jsem získala výcvikem a praxí na Lince bezpečí.</p>
+          <div class="about-heading-meta">
+            Psycholožka<br>
+            Psychoterapeutka<br>
+            Lektorka mindfulness
+          </div>
+        </div>
+        <div class="about-text">
+          <p>Vystudovala jsem jednooborovou psychologii na Univerzitě Palackého v&nbsp;Olomouci. Absolvovala jsem psychoterapeutický výcvik v&nbsp;Logoterapii a&nbsp;existenciální analýze, z&nbsp;kterého čerpám v&nbsp;mé psychoterapeutické praxi.</p>
+          <p>Má odborná cesta je bohatá na&nbsp;různorodé vzdělávání v&nbsp;oboru psychoterapie, neboť vždy respektuji jedinečnost klienta. Zaměřuji se na&nbsp;hledání potřeb, souladu v&nbsp;soužití se sebou a&nbsp;následné směřování ke&nbsp;změně.</p>
+          <p>Od&nbsp;roku 2014 pracuji v&nbsp;rodinné a&nbsp;manželské poradně jako psycholožka. Součástí mé práce je psychoterapie, posuzování a&nbsp;poradenství v&nbsp;oblasti rodinné péče.</p>
+          <p>Mám zkušenost s&nbsp;krizovou intervencí, kterou jsem získala výcvikem a&nbsp;praxí při práci krizové intervence na&nbsp;Lince bezpečí.</p>
           <div class="about-credentials">
             <div class="cred-item">
               <div class="cred-label">Vzdělání</div>
@@ -868,7 +1216,7 @@
             </div>
             <div class="cred-item">
               <div class="cred-label">Hlavní směr</div>
-              <div class="cred-value">Logoterapie & existenciální analýza</div>
+              <div class="cred-value">Logoterapie &amp; existenciální analýza</div>
             </div>
             <div class="cred-item">
               <div class="cred-label">Praxe</div>
@@ -959,34 +1307,62 @@
       <div class="services-grid">
         <article class="service-card">
           <div class="service-image">
-            <img src="photos/sluzba-konzultace.jpg" alt="Konzultace a psychoterapie" />
+            <img src="photos/sluzba-konzultace.jpg" alt="Konzultace a psychoterapie" loading="lazy" />
           </div>
           <div class="service-body">
             <h3>Konzultace<br>a psychoterapie</h3>
-            <p>Individuální, párové a rodinné konzultace. Psychoterapie založená na logoterapii a existenciální analýze. Nabízím také on-line formu.</p>
+            <p>Individuální, párové a&nbsp;rodinné konzultace. Psychoterapie založená na&nbsp;logoterapii a&nbsp;existenciální analýze. Pracuji s&nbsp;dospělými, páry, rodinami i&nbsp;dětmi.</p>
+            <p style="margin-top:-6px"><strong style="color:var(--sage-3);font-weight:600">Nabízím i&nbsp;on-line formu</strong> — pro klienty, kterým osobní docházka nevyhovuje.</p>
             <span class="price">od 800 Kč<small>/ sezení</small></span>
           </div>
         </article>
         <article class="service-card">
           <div class="service-image">
-            <img src="photos/sluzba-mindfulness.jpg" alt="Mindfulness" />
+            <img src="photos/sluzba-mindfulness.jpg" alt="Mindfulness" loading="lazy" />
           </div>
           <div class="service-body">
             <h3>Mindfulness</h3>
-            <p>Osmitýdenní program všímavosti pro lepší vztah se sebou i druhými. Pravidelná setkání zaměřená na soustředěné prožívání přítomnosti.</p>
+            <p>Osmitýdenní program všímavosti pro lepší vztah se sebou i&nbsp;druhými. Pravidelná setkání zaměřená na&nbsp;soustředěné prožívání přítomnosti.</p>
+            <p style="margin-top:-6px">Vhodné <strong style="color:var(--sage-3);font-weight:600">pro úplné začátečníky i&nbsp;mírně pokročilé</strong>. Tištěný materiál součástí kurzu.</p>
             <span class="price">5 900 Kč<small>/ 8 týdnů</small></span>
           </div>
         </article>
         <article class="service-card">
           <div class="service-image">
-            <img src="photos/sluzba-filialni.jpg" alt="Filiální terapie" />
+            <img src="photos/sluzba-filialni.jpg" alt="Filiální terapie" loading="lazy" />
           </div>
           <div class="service-body">
             <h3>Filiální terapie</h3>
-            <p>Desetitýdenní program pro rodiče, který posiluje vztah s dítětem. Učíme se vést hru tak, aby dítě cítilo bezpečí, blízkost a porozumění.</p>
+            <p>Desetitýdenní program pro rodiče, který posiluje vztah s&nbsp;dítětem. Učíme se vést hru tak, aby dítě cítilo bezpečí, blízkost a&nbsp;porozumění.</p>
+            <p style="margin-top:-6px"><strong style="color:var(--sage-3);font-weight:600">Pro rodiče dětí 3–11 let</strong> — bez přímé účasti dítěte na&nbsp;skupinových setkáních.</p>
             <span class="price">7 000 Kč<small>/ 10 týdnů</small></span>
           </div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== MINDFULNESS — PROČ ============== -->
+  <section class="mindfulness" id="mindfulness">
+    <div class="mindfulness-inner">
+      <div class="mindfulness-head">
+        <span class="eyebrow">Mindfulness</span>
+        <h2>Všímavost je schopnost<br><em style="font-style:italic;color:var(--sage-2);font-weight:400">každého z&nbsp;nás.</em></h2>
+        <p>Mindfulness neboli všímavost je schopnost každého člověka. V&nbsp;kurzu ji budeme rozvíjet — budeme se učit okamžik za&nbsp;okamžikem, co se právě odehrává v&nbsp;mysli a&nbsp;těle.</p>
+      </div>
+      <div class="mindfulness-cols">
+        <div class="mindfulness-card">
+          <h3>Proč to dělat?</h3>
+          <p>Při rozvíjení všímavosti měníme postoj k&nbsp;tomu, co se odehrává uvnitř nás. Učíme se akceptovat — tedy neodmítat, nepotlačovat své myšlenky a&nbsp;emoce.</p>
+          <p>Postupně si stále detailněji uvědomujeme, co se odehrává tady a&nbsp;teď. Trénink tohoto procesu vede k&nbsp;tomu, že si uvědomujeme, čemu věnujeme pozornost během dne.</p>
+          <p>Toto uvědomění je velmi důležitý moment. <strong>Uvědomění si jednotlivých fenoménů</strong> nás vede k&nbsp;tomu, že můžeme měnit k&nbsp;těmto fenoménům postoj. A&nbsp;to již měníme sami sebe — říkáme tomu proces transformace. Mysl je klidnější, pružnější, jasnější… svobodnější.</p>
+        </div>
+        <div class="mindfulness-card">
+          <h3>Proč ve vztazích?</h3>
+          <p>Změna nás samotných vede k&nbsp;hlubšímu porozumění sobě, ale i&nbsp;druhým. Všímavost ve&nbsp;vztazích nás učí <strong>otevřenosti, uvolnění v&nbsp;komunikaci</strong> a&nbsp;zároveň většímu uvědomění si vlastních potřeb i&nbsp;hranic.</p>
+          <p>Opouštíme nefunkční komunikaci a&nbsp;zaběhlé vzorce. Naučíme se uvědomit si myšlenky a&nbsp;pocity, které nás právě ovládají, naslouchat druhým a&nbsp;jasně vyjadřovat to, co je pro nás důležité.</p>
+          <p>To platí jak v&nbsp;blízkých, tak v&nbsp;pracovních vztazích.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1074,67 +1450,166 @@
         </div>
         <p>Pravidelně otevírám kurzy zaměřené na rodičovské dovednosti, mindfulness a komunikaci ve vztazích. Konají se přímo ve Frýdku-Místku.</p>
       </div>
-      <div class="courses-grid">
-        <article class="course-card">
-          <div class="course-image">
-            <img src="photos/kurz-rodicovstvi.jpg" alt="Kurz rodičovských dovedností" />
-          </div>
-          <div class="course-body">
-            <div>
-              <div class="course-date">11 — 11 — 2025</div>
+      <div class="courses-list">
+
+        <details class="course-item" id="kurz-rodicovstvi">
+          <summary class="course-summary">
+            <div class="course-thumb"><img src="photos/kurz-rodicovstvi.jpg" alt="Kurz rodičovských dovedností" loading="lazy" /></div>
+            <div class="course-head-text">
+              <div class="course-date">11. 11. 2025 · 10 setkání</div>
               <h3>Kurz rodičovských dovedností</h3>
+              <div class="course-loc">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Farní náměstí 51, Frýdek-Místek
+              </div>
             </div>
-            <div class="course-loc">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Farní náměstí 51, Frýdek-Místek
+            <div class="course-toggle" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             </div>
-          </div>
-        </article>
-        <article class="course-card">
-          <div class="course-image">
-            <img src="photos/kurz-vzdelavaci.png" alt="Vzdělávací kurz s terapeutickým přesahem" />
-          </div>
-          <div class="course-body">
-            <div>
-              <div class="course-date">02 — 10 — 2025</div>
-              <h3>Vzdělávací kurz s terapeutickým přesahem</h3>
-            </div>
-            <div class="course-loc">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Farní náměstí 51, Frýdek-Místek
-            </div>
-          </div>
-        </article>
-        <article class="course-card">
-          <div class="course-image">
-            <img src="photos/kurz-mindfulness-workshop.jpg" alt="Workshop Mindfulness ve vztazích a komunikaci" />
-          </div>
-          <div class="course-body">
-            <div>
-              <div class="course-date">27 — 02 — 2025</div>
-              <h3>Workshop Mindfulness ve vztazích a komunikaci</h3>
-            </div>
-            <div class="course-loc">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Farní náměstí 51, Frýdek-Místek
+          </summary>
+          <div class="course-detail">
+            <div class="course-detail-grid">
+              <div class="course-detail-content">
+                <p>Jsou situace, kdy máte pocit, že se Vám nedaří Vaše dítě vychovávat tak, jak jste si představovali. Zažíváte pocit, že něco děláte ve&nbsp;výchově špatně, ale nevíte co. Cítíte, že byste chtěli být lepším rodičem, snažíte se — ale nejde to, vrací se opakované potíže, jste vyčerpaní.</p>
+                <p>Vaše dítě má záchvaty vzteku, hůře regulovatelné chování, vše se musí dít podle něj, „ne" je odpověď, kterou slýcháte často. K&nbsp;tomu se přidává okolí, které má pocit, že něco nezvládáte. <strong>Právě pro Vás jsem připravila Kurz rodičovských dovedností.</strong></p>
+                <h4>Pro koho je kurz vhodný</h4>
+                <p>Pro rodiče dětí ve&nbsp;věku 3–11 let, kteří se setkávají s&nbsp;potížemi — impulzivita, stud, sociální nejistota, potíže ve&nbsp;vztahové oblasti.</p>
+                <h4>Jak probíhá</h4>
+                <p>Nejprve proběhne <strong>individuální setkání zdarma</strong>, kde vyladíme Vaše potřeby. Kurz pak probíhá ve&nbsp;skupině rodičů — kombinuje výukovou část, zážitkové procvičování a&nbsp;domácí úkoly v&nbsp;rodinném prostředí. Bez přímé účasti dětí.</p>
+                <h4>Termíny</h4>
+                <p>11. 11., 18. 11., 25. 11., 2. 12., 6. 1., 20. 1., 27. 1., 3. 2. + další dvě setkání v&nbsp;únoru. Vždy v&nbsp;čase <strong>17:00–19:00</strong>.</p>
+              </div>
+              <aside class="course-info-box">
+                <dl>
+                  <dt>Cena</dt><dd class="price">6 600 Kč</dd>
+                  <dt>Délka</dt><dd>10 setkání · 20 hodin</dd>
+                  <dt>Forma</dt><dd>Skupinová, výukově-zážitková</dd>
+                  <dt>Lektorka</dt><dd>Mgr. Petra Juráková</dd>
+                  <dt>Bonus</dt><dd>Tištěná skripta v&nbsp;ceně</dd>
+                </dl>
+                <a href="#contact" class="course-cta">Přihlásit se →</a>
+              </aside>
             </div>
           </div>
-        </article>
-        <article class="course-card">
-          <div class="course-image">
-            <img src="photos/kurz-mindfulness-vztahy.png" alt="Mindfulness ve vztazích" />
+        </details>
+
+        <details class="course-item" id="kurz-vzdelavaci">
+          <summary class="course-summary">
+            <div class="course-thumb"><img src="photos/kurz-vzdelavaci.jpg" alt="Vzdělávací kurz s terapeutickým přesahem" loading="lazy" /></div>
+            <div class="course-head-text">
+              <div class="course-date">2. 10. 2025 · 8 setkání + retreat</div>
+              <h3>Vzdělávací kurz s&nbsp;terapeutickým přesahem</h3>
+              <div class="course-loc">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Farní náměstí 51, Frýdek-Místek
+              </div>
+            </div>
+            <div class="course-toggle" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+          </summary>
+          <div class="course-detail">
+            <div class="course-detail-grid">
+              <div class="course-detail-content">
+                <p>Společně (ve&nbsp;skupině) se učíme, jak se postavit životní situaci, která je provázena těžkými emocemi. Vysvětlím vám, jak ji zvládat jinak. Čeká Vás 8&nbsp;podvečerů a&nbsp;jedno půldenní sobotní setkání. <strong>Čeká Vás změna.</strong></p>
+                <h4>Termíny setkání</h4>
+                <p>2. 10., 9. 10., 16. 10., 23. 10., 6. 11., <strong>15. 11. (půldenní retreat)</strong>, 20. 11., 27. 11., 4. 12.</p>
+                <h4>Jak probíhá</h4>
+                <p>Jedná se o&nbsp;<strong>sebezkušenostní způsob</strong> — sami nebo ve&nbsp;dvojicích budete vycházet z&nbsp;komfortní zóny a&nbsp;zažívat nově sami sebe.</p>
+                <h4>Musím něco umět?</h4>
+                <p>Nemusíte vůbec nic — toto pravidlo uslyšíte opakovaně. Vše je pro Vás připraveno. Pokud máte oblíbený meditační polštářek či podložku, vezměte je.</p>
+                <p style="margin-top:16px;font-style:italic;color:var(--sage-2)">Před zahájením doporučuji individuální setkání zdarma, kde si vše vysvětlíme a&nbsp;poznáme se.</p>
+              </div>
+              <aside class="course-info-box">
+                <dl>
+                  <dt>Cena</dt><dd class="price">6 600 Kč</dd>
+                  <dt>Sazba</dt><dd>300 Kč / hod.</dd>
+                  <dt>Délka</dt><dd>22 hodin celkem</dd>
+                  <dt>Časy</dt><dd>Po–Pá 18:00–20:00<br>So 10:00–16:00</dd>
+                  <dt>Bonus</dt><dd>Tištěná skripta + přítomnost psycholožky po&nbsp;celou dobu</dd>
+                </dl>
+                <a href="#contact" class="course-cta">Domluvit informační setkání →</a>
+              </aside>
+            </div>
           </div>
-          <div class="course-body">
-            <div>
-              <div class="course-date">13 — 03 — 2025</div>
+        </details>
+
+        <details class="course-item" id="kurz-mindfulness-workshop">
+          <summary class="course-summary">
+            <div class="course-thumb"><img src="photos/kurz-mindfulness-workshop.jpg" alt="Workshop Mindfulness ve vztazích a komunikaci" loading="lazy" /></div>
+            <div class="course-head-text">
+              <div class="course-date">27. 2. 2025 · 2 hod. seminář · ZDARMA</div>
+              <h3>Workshop Mindfulness ve vztazích a&nbsp;komunikaci</h3>
+              <div class="course-loc">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Farní náměstí 51, Frýdek-Místek
+              </div>
+            </div>
+            <div class="course-toggle" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+          </summary>
+          <div class="course-detail">
+            <div class="course-detail-grid">
+              <div class="course-detail-content">
+                <p>Zajímá Vás mindfulness, souzní s&nbsp;Vámi možnosti, které by Vám tato praxe mohla přinést do&nbsp;života? Nejste si však jisti, co Vás čeká, jak se budete cítit, jestli Vám to bude sedět — prostě jestli je to Vaše cesta.</p>
+                <p><strong>Přesně pro Vás je tento 2&nbsp;hodinový seminář</strong>, kde si vyzkoušíte základní přístupy, které při tréninku a&nbsp;výuce mindfulness budeme využívat.</p>
+                <h4>Co s sebou</h4>
+                <p>Pohodlné oblečení, přezůvky (pokud nechcete být bosky). Deky a&nbsp;polštáře k&nbsp;dispozici.</p>
+              </div>
+              <aside class="course-info-box">
+                <dl>
+                  <dt>Cena</dt><dd class="price">Zdarma</dd>
+                  <dt>Délka</dt><dd>2 hodiny (18:00–20:00)</dd>
+                  <dt>Pozn.</dt><dd>Nutná přihláška<br>(omezený počet míst)</dd>
+                </dl>
+                <a href="#contact" class="course-cta">Přihlásit se →</a>
+              </aside>
+            </div>
+          </div>
+        </details>
+
+        <details class="course-item" id="kurz-mindfulness-vztahy">
+          <summary class="course-summary">
+            <div class="course-thumb"><img src="photos/kurz-mindfulness-vztahy.png" alt="Mindfulness ve vztazích" loading="lazy" /></div>
+            <div class="course-head-text">
+              <div class="course-date">13. 3. 2025 · 8 týdnů</div>
               <h3>Mindfulness ve vztazích</h3>
+              <div class="course-loc">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Farní náměstí 51, Frýdek-Místek
+              </div>
             </div>
-            <div class="course-loc">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Farní náměstí 51, Frýdek-Místek
+            <div class="course-toggle" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+          </summary>
+          <div class="course-detail">
+            <div class="course-detail-grid">
+              <div class="course-detail-content">
+                <p>Osmitýdenní kurz mindfulness zaměřený na&nbsp;vztahy a&nbsp;komunikaci. V&nbsp;kurzu rozvíjíme schopnost být <strong>okamžik za&nbsp;okamžikem</strong> — uvědomovat si, co se právě odehrává v&nbsp;mysli a&nbsp;těle.</p>
+                <h4>Termíny</h4>
+                <p>13. 3., 20. 3., 27. 3., 3. 4., 10. 4., 24. 4. + <strong>celodenní setkání 3. 5. (10:00–16:00)</strong>, 15. 5., 22. 5.</p>
+                <h4>Čas</h4>
+                <p>Čtvrtky 18:00–20:00.</p>
+                <h4>Pro koho</h4>
+                <p>Vhodné pro úplné začátečníky i&nbsp;mírně pokročilé. Setkávání skupinovou formou.</p>
+                <h4>Co s sebou</h4>
+                <p>Pohodlné oblečení, přezůvky (pokud neradi bosky). Deky a&nbsp;polštáře k&nbsp;dispozici, pitný režim také.</p>
+              </div>
+              <aside class="course-info-box">
+                <dl>
+                  <dt>Cena</dt><dd class="price">5 900 Kč</dd>
+                  <dt>Délka</dt><dd>22 hod. výuky</dd>
+                  <dt>Lektorka</dt><dd>Petra Juráková</dd>
+                  <dt>Bonus</dt><dd>Tištěný materiál v&nbsp;ceně kurzu</dd>
+                </dl>
+                <a href="#contact" class="course-cta">Přihlásit se →</a>
+              </aside>
             </div>
           </div>
-        </article>
+        </details>
+
       </div>
     </div>
   </section>
@@ -1176,10 +1651,32 @@
               </div>
             </div>
           </div>
-          <a href="tel:+420731443344" class="btn btn-primary">Zavolat ihned →</a>
+          <div class="contact-actions">
+            <a href="tel:+420731443344" class="btn btn-primary">Zavolat ihned →</a>
+            <a href="mailto:info@psychologiejurakova.cz" class="btn btn-ghost">Napsat e-mail</a>
+          </div>
         </div>
-        <div class="contact-map">
-          <iframe src="https://www.google.com/maps?q=Farn%C3%AD%20n%C3%A1m%C4%9Bst%C3%AD%2051%2C%20Fr%C3%BDdek-M%C3%ADstek&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+        <div class="contact-form-wrap">
+          <form class="contact-form" id="contactForm" onsubmit="event.preventDefault();var b=this.querySelector('button');b.textContent='Odesláno ✓';b.disabled=true;b.style.background='var(--sage)';">
+            <div class="form-head">
+              <span class="eyebrow" style="margin-bottom:8px">Nebo napište zprávu</span>
+              <h3>Kontaktní formulář</h3>
+            </div>
+            <div class="form-row">
+              <label>Jméno<input type="text" name="firstName" required /></label>
+              <label>Příjmení<input type="text" name="lastName" required /></label>
+            </div>
+            <label>E-mail<input type="email" name="email" required /></label>
+            <label>Vzkaz<textarea name="message" rows="4" required></textarea></label>
+            <label class="checkbox">
+              <input type="checkbox" required />
+              <span>Souhlasím se zpracováním mého jména, e-mailu a&nbsp;zprávy z&nbsp;tohoto formuláře za&nbsp;účelem odpovědi na&nbsp;můj dotaz.</span>
+            </label>
+            <button type="submit" class="btn btn-primary">Odeslat zprávu →</button>
+          </form>
+          <div class="contact-map">
+            <iframe src="https://www.google.com/maps?q=Farn%C3%AD%20n%C3%A1m%C4%9Bst%C3%AD%2051%2C%20Fr%C3%BDdek-M%C3%ADstek&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+          </div>
         </div>
       </div>
     </div>
