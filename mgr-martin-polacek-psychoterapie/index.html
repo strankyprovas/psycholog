@@ -394,6 +394,23 @@
     }
     .metoda-tag span{font-size:.78rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
 
+    .metoda-gallery{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px;
+    }
+    .metoda-gallery figure{
+      position:relative;margin:0;border-radius:var(--radius);overflow:hidden;
+      aspect-ratio:4/3;box-shadow:0 16px 40px -28px rgba(28,35,33,.35);
+    }
+    .metoda-gallery img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+    .metoda-gallery figure:hover img{transform:scale(1.04)}
+    .metoda-gallery figcaption{
+      position:absolute;left:0;right:0;bottom:0;
+      padding:24px 16px 12px;
+      background:linear-gradient(180deg,transparent,rgba(28,35,33,.78));
+      color:var(--linen);font-family:'Cormorant Garamond',serif;
+      font-size:1.02rem;font-style:italic;text-align:center;
+    }
+
     /* ========================================================= */
     /* TÉMATA — editorial chip block                              */
     /* ========================================================= */
@@ -696,6 +713,7 @@
       .temata-chip{padding:11px 18px;font-size:.9rem}
       .pristup-grid{grid-template-columns:1fr;gap:20px}
       .pristup-card{padding:34px 28px}
+      .metoda-gallery{grid-template-columns:1fr 1fr;margin-top:40px}
     }
     @media (max-width: 600px) {
       .pomoc-grid{grid-template-columns:1fr}
@@ -1014,12 +1032,31 @@
       </div>
 
       <div class="metoda-photo" data-r data-d="1">
-        <img src="photos/pracovna.jpg" alt="Pracovna Mgr. Martina Poláčka — Plzeň, Zikmunda Wintra 21" loading="lazy" />
+        <img src="photos/pracovna-sezeni.jpg" alt="Mgr. Martin Poláček při terapeutickém sezení ve své pracovně v Plzni" loading="lazy" />
         <div class="metoda-tag">
-          <strong>„Klidné a&nbsp;bezpečné místo."</strong>
-          <span>Pracovna v&nbsp;centru Plzně</span>
+          <strong>„Prožívání tady a&nbsp;teď."</strong>
+          <span>V&nbsp;pracovně v&nbsp;centru Plzně</span>
         </div>
       </div>
+    </div>
+
+    <div class="metoda-gallery" data-r>
+      <figure>
+        <img src="photos/metoda-piskoviste.jpg" alt="Práce s pískovištěm a figurkami v terapii" loading="lazy" />
+        <figcaption>Pískoviště &amp;&nbsp;figurky</figcaption>
+      </figure>
+      <figure>
+        <img src="photos/metoda-karty.jpg" alt="Práce s obrázkovými terapeutickými kartami" loading="lazy" />
+        <figcaption>Obrázkové&nbsp;karty</figcaption>
+      </figure>
+      <figure>
+        <img src="photos/metoda-tvorba.jpg" alt="Arteterapie — tvorba a malba při sezení" loading="lazy" />
+        <figcaption>Tvorba a&nbsp;malba</figcaption>
+      </figure>
+      <figure>
+        <img src="photos/metoda-telo.jpg" alt="Práce s tělem a uvolnění napětí v terapii" loading="lazy" />
+        <figcaption>Práce s&nbsp;tělem</figcaption>
+      </figure>
     </div>
   </div>
 </section>
