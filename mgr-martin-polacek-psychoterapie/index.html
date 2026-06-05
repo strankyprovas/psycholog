@@ -212,8 +212,14 @@
       width:18px;height:18px;border-radius:50%;
       background:var(--sage-600);color:var(--linen);
       display:inline-flex;align-items:center;justify-content:center;
-      font-size:.7rem;
+      font-size:.7rem;flex-shrink:0;
     }
+    /* Stav: plná kapacita (decentní béžová, čitelný delší text) */
+    .hero-badge.full{
+      background:#f4ece2;border-color:#e6d8c6;color:var(--clay);
+      text-transform:none;letter-spacing:.01em;font-size:.78rem;
+    }
+    .hero-badge.full .hb-dot{background:var(--clay)}
 
     .hero-title{margin-bottom:28px}
     .hero-title em{font-style:italic;color:var(--sage-600)}
@@ -783,9 +789,10 @@
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-text" data-r>
-        <div class="hero-badge">
-          <span class="hb-dot">✓</span>
-          <span>Přijímám nové klienty</span>
+        <!-- Stav kapacity: pro přepnutí na "přijímám" smaž třídu "full", vrať ✓ a text "Přijímám nové klienty" -->
+        <div class="hero-badge full">
+          <span class="hb-dot">—</span>
+          <span>Aktuálně mám plnou kapacitu a&nbsp;nepřijímám nové klienty</span>
         </div>
         <h1 class="hero-title serif">
           Terapie, která&nbsp;ctí<br>
