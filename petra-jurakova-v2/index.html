@@ -176,6 +176,40 @@
       transition: transform .3s ease;
     }
     .nav-links a:hover::after { transform: scaleX(1); }
+    /* dropdown "Nabízím" */
+    .nav-item { position: relative; }
+    .nav-item > a .caret {
+      display: inline-block; margin-left: 5px; font-size: 0.7em;
+      transition: transform .3s ease; opacity: .8;
+    }
+    .nav-dropdown {
+      position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px);
+      min-width: 290px; padding: 10px;
+      background: var(--cream);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 14px;
+      box-shadow: 0 18px 50px rgba(40,50,40,0.16);
+      opacity: 0; visibility: hidden;
+      transition: opacity .25s ease, transform .25s ease, visibility .25s;
+      list-style: none; z-index: 60;
+    }
+    .nav-dropdown::before {
+      content: ''; position: absolute; top: -16px; left: 0; right: 0; height: 16px;
+    }
+    .nav-item:hover .nav-dropdown,
+    .nav-item:focus-within .nav-dropdown {
+      opacity: 1; visibility: visible; transform: translateX(-50%) translateY(6px);
+    }
+    .nav-item:hover > a .caret { transform: rotate(180deg); }
+    .nav-dropdown li { display: block; }
+    .nav-dropdown a {
+      display: block; padding: 11px 14px; border-radius: 9px;
+      font-size: 0.9rem; font-weight: 500; line-height: 1.35;
+      color: var(--ink-2) !important; text-shadow: none;
+      transition: background .2s ease, color .2s ease;
+    }
+    .nav-dropdown a::after { display: none; }
+    .nav-dropdown a:hover { background: var(--sage-1, #eef1ea); color: var(--sage-3) !important; }
     .nav-cta {
       padding: 10px 22px; font-size: 0.85rem;
       background: var(--cream);
@@ -524,7 +558,7 @@
     }
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 32px;
     }
     .service-card {
@@ -1138,14 +1172,20 @@
     <div class="container nav-inner">
       <a href="#hero" class="nav-logo">
         Petra Juráková
-        <small>Psychologie · Psychoterapie</small>
+        <small>Psychologie. Psychoterapie. Lektorování.</small>
       </a>
       <ul class="nav-links">
-        <li><a href="#about">O mně</a></li>
-        <li><a href="#services">Nabízím</a></li>
-        <li><a href="#mindfulness">Mindfulness</a></li>
+        <li class="nav-item">
+          <a href="#services">Nabízím<span class="caret">▾</span></a>
+          <ul class="nav-dropdown">
+            <li><a href="#services">Psychoterapie</a></li>
+            <li><a href="#pripravy">Přípravy pro žadatele o náhradní rodinnou péči</a></li>
+            <li><a href="#mindfulness">Kurzy Mindfulness</a></li>
+            <li><a href="#filialni">Kurzy Filiální terapie</a></li>
+          </ul>
+        </li>
         <li><a href="#pricing">Ceník</a></li>
-        <li><a href="#courses">Kurzy</a></li>
+        <li><a href="#about">O mně</a></li>
         <li><a href="#contact">Kontakt</a></li>
       </ul>
       <a href="#contact" class="btn btn-primary nav-cta">Objednat se</a>
@@ -1156,23 +1196,23 @@
   <!-- ============== HERO (full-bleed) ============== */ -->
   <section class="hero" id="hero">
     <div class="hero-bg">
-      <img src="photos/hero.png" alt="Mgr. Ing. Petra Juráková — psycholožka" />
+      <img src="photos/hero-petra.jpg" alt="Mgr. Ing. Petra Juráková — psycholožka" style="object-position: 72% 30%;" />
     </div>
     <div class="hero-content">
       <div class="hero-inner">
-        <span class="hero-eyebrow"><span class="dot"></span>Frýdek-Místek · Farní náměstí 51</span>
+        <span class="hero-eyebrow"><span class="dot"></span>Frýdek-Místek · Farní náměstí 51 · i&nbsp;on-line</span>
         <h1>Vítám Vás. <em>Společně najdeme cestu.</em></h1>
         <p class="hero-sub">
-          Psychologická a psychoterapeutická praxe založená na logoterapii a existenciální analýze. Společně hledáme Vaše potřeby, soulad v soužití se sebou a směřování ke změně.
+          Jsem ráda, že jste tady. Pomohu Vám zorientovat se na těchto stránkách a společně najdeme cestu, která bude sedět právě Vám. A nevadí, že jste odjinud — nabízím i&nbsp;on-line.
         </p>
         <div class="hero-cta">
           <a href="#contact" class="btn btn-primary">Objednat konzultaci →</a>
-          <a href="#about" class="btn btn-ghost">O mé práci</a>
+          <a href="#services" class="btn btn-ghost">Odborná příprava k přijetí dítěte do rodiny</a>
         </div>
         <div class="hero-meta">
           <div class="hero-meta-item">
-            <div class="num">10+</div>
-            <div class="lab">let praxe</div>
+            <div class="num">20 let</div>
+            <div class="lab">praxe</div>
           </div>
           <div class="hero-meta-item">
             <div class="num">750h</div>
@@ -1305,19 +1345,28 @@
     <div class="container">
       <div class="services-head">
         <span class="eyebrow">Co nabízím</span>
-        <h2>Konzultace, psychoterapie a kurzy<br>vedené individuálním přístupem.</h2>
-        <p>Pracuji s dospělými, páry, rodinami i dětmi. Konzultace a psychoterapii nabízím jak osobně ve Frýdku-Místku, tak on-line.</p>
+        <h2>Vyberte si oblast,<br>která Vás zajímá.</h2>
       </div>
       <div class="services-grid">
-        <article class="service-card">
+        <article class="service-card" id="psychoterapie">
           <div class="service-image">
             <img src="photos/sluzba-konzultace.jpg" alt="Konzultace a psychoterapie" loading="lazy" />
           </div>
           <div class="service-body">
             <h3>Konzultace<br>a psychoterapie</h3>
             <p>Individuální, párové a&nbsp;rodinné konzultace. Psychoterapie založená na&nbsp;logoterapii a&nbsp;existenciální analýze. Pracuji s&nbsp;dospělými, páry, rodinami i&nbsp;dětmi.</p>
-            <p style="margin-top:-6px"><strong style="color:var(--sage-3);font-weight:600">Nabízím i&nbsp;on-line formu</strong> — pro klienty, kterým osobní docházka nevyhovuje.</p>
-            <span class="price">od 800 Kč<small>/ sezení</small></span>
+            <p style="margin-top:-6px"><strong style="color:var(--sage-3);font-weight:600">Nabízím i&nbsp;on-line formu</strong> — nejen pro klienty, kterým osobní docházka nevyhovuje, ale i&nbsp;pro ty, kdo to mají daleko. On-line tak mohu pomoci komukoli z&nbsp;celé ČR i&nbsp;Čechům žijícím v&nbsp;zahraničí.</p>
+            <span class="price">od 800 Kč<small>/ hodina</small></span>
+          </div>
+        </article>
+        <article class="service-card" id="pripravy">
+          <div class="service-image">
+            <img src="photos/sluzba-priprava.jpg" alt="Přípravy žadatelů o náhradní rodinnou péči" loading="lazy" />
+          </div>
+          <div class="service-body">
+            <h3>Přípravy žadatelů<br>o náhradní rodinnou péči</h3>
+            <p>Nabídka skupinových kurzů pro osvojitele a&nbsp;pěstouny. Jako pověřená osoba Krajského úřadu provázím žadatele odbornou přípravou na&nbsp;přijetí dítěte do&nbsp;rodiny.</p>
+            <span class="price price-free">Zdarma<small>pro žadatele</small></span>
           </div>
         </article>
         <article class="service-card">
@@ -1331,14 +1380,13 @@
             <span class="price">5 900 Kč<small>/ 8 týdnů</small></span>
           </div>
         </article>
-        <article class="service-card">
+        <article class="service-card" id="filialni">
           <div class="service-image">
             <img src="photos/sluzba-filialni.jpg" alt="Filiální terapie" loading="lazy" />
           </div>
           <div class="service-body">
             <h3>Filiální terapie</h3>
-            <p>Desetitýdenní program pro rodiče, který posiluje vztah s&nbsp;dítětem. Učíme se vést hru tak, aby dítě cítilo bezpečí, blízkost a&nbsp;porozumění.</p>
-            <p style="margin-top:-6px"><strong style="color:var(--sage-3);font-weight:600">Pro rodiče dětí 3–11 let</strong> — bez přímé účasti dítěte na&nbsp;skupinových setkáních.</p>
+            <p>Desetitýdenní program pro rodiče, který posiluje vztah s&nbsp;dítětem. Naučím Vás, jak reagovat na&nbsp;obtížné chování dítěte při zachování vzájemné blízkosti a&nbsp;bezpečí.</p>
             <span class="price">7 000 Kč<small>/ 10 týdnů</small></span>
           </div>
         </article>
