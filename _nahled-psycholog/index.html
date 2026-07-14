@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mgr. Klára Nová</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    img { max-width: 100%; display: block; }
+
+    :root {
+      --cream:  #f6f1ea;
+      --cream2: #ece4d7;
+      --paper:  #fbf8f3;
+      --sage:   #6b7d6a;
+      --sage2:  #4f5f50;
+      --sage3:  #3a4a3f;
+      --sand:   #c9b793;
+      --sand2:  #b09e76;
+      --ink:    #1f241f;
+      --ink2:   #3b403a;
+      --muted:  #6e7570;
+      --line:   #d8cfc1;
+      --ease:   cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow: 0 22px 55px rgba(58,74,63,.13);
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    ::selection { background: var(--sage3); color: #fff; }
+
+    #progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; background: var(--sage); transform-origin: left; transform: scaleX(0); z-index: 9999; transition: transform .1s linear; }
+
+    /* NAV */
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.5rem 5%; display: flex; align-items: center; justify-content: space-between; transition: all .4s var(--ease); }
+    #navbar.scrolled { background: rgba(251,248,243,.94); backdrop-filter: blur(14px); padding: .95rem 5%; box-shadow: 0 1px 0 var(--line); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.65rem; font-weight: 600; color: var(--sage3); text-decoration: none; letter-spacing: .01em; line-height: 1; }
+    .nav-logo span { color: var(--sand2); }
+    .nav-links { display: flex; gap: 2.4rem; list-style: none; align-items: center; }
+    .nav-links a { color: var(--ink2); text-decoration: none; font-size: .84rem; font-weight: 500; transition: color .25s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; right: 0; height: 1.5px; background: var(--sage); transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease); }
+    .nav-links a:hover { color: var(--sage3); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { font-family: 'Inter', sans-serif; font-size: .82rem; font-weight: 600; color: #fff; background: var(--sage3); padding: .75rem 1.6rem; border: none; cursor: pointer; text-decoration: none; transition: all .3s; border-radius: 999px; }
+    .nav-cta:hover { background: var(--sage2); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--sage3); transition: all .3s; }
+
+    #mobile-nav { display: none; position: fixed; inset: 0; background: var(--cream); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 1.8rem; }
+    #mobile-nav.open { display: flex; }
+    #mobile-nav a { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 500; color: var(--sage3); text-decoration: none; }
+    #mobile-nav a:hover { color: var(--sand2); font-style: italic; }
+    .close-nav { position: absolute; top: 2rem; right: 6%; background: none; border: none; color: var(--sage3); font-size: 2rem; cursor: pointer; }
+
+    /* HERO */
+    #hero { min-height: 100vh; background: linear-gradient(165deg, var(--paper) 0%, var(--cream2) 100%); display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 4rem; padding: 8rem 8% 4rem; }
+    .hero-left { max-width: 560px; }
+    .hero-eyebrow { font-size: .74rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--sage2); margin-bottom: 1.6rem; display: inline-flex; align-items: center; gap: 1rem; opacity: 0; animation: fadeUp .9s .2s var(--ease) forwards; }
+    .hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--sage); }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 5.4vw, 4.8rem); font-weight: 500; line-height: 1.1; letter-spacing: -.005em; color: var(--sage3); margin-bottom: 1.4rem; opacity: 0; animation: fadeUp .9s .34s var(--ease) forwards; }
+    .hero-title em { font-style: italic; color: var(--sand2); }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; line-height: 1.85; color: var(--ink2); max-width: 450px; margin-bottom: 1.6rem; opacity: 0; animation: fadeUp .9s .5s var(--ease) forwards; }
+    .hero-note { display: inline-flex; align-items: center; gap: .55rem; font-size: .86rem; color: var(--sage2); background: rgba(107,125,106,.1); padding: .5rem 1rem; border-radius: 999px; margin-bottom: 2.2rem; opacity: 0; animation: fadeUp .9s .58s var(--ease) forwards; }
+    .hero-note svg { width: 17px; height: 17px; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-bottom: 2.2rem; opacity: 0; animation: fadeUp .9s .66s var(--ease) forwards; }
+    .btn-solid { background: var(--sage3); color: #fff; padding: 1.05rem 2.3rem; border: none; cursor: pointer; font-family: 'Inter', sans-serif; font-size: .88rem; font-weight: 600; text-decoration: none; display: inline-block; border-radius: 999px; transition: all .3s; }
+    .btn-solid:hover { background: var(--sage2); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(58,74,63,.28); }
+    .btn-line { background: transparent; color: var(--sage3); padding: 1.05rem 2.3rem; border: 1px solid var(--sage); font-family: 'Inter', sans-serif; font-size: .88rem; font-weight: 500; text-decoration: none; display: inline-block; border-radius: 999px; transition: all .3s; }
+    .btn-line:hover { background: var(--sage3); color: #fff; border-color: var(--sage3); }
+    .hero-rating { display: inline-flex; align-items: center; gap: .7rem; font-size: .84rem; color: var(--ink2); opacity: 0; animation: fadeUp .9s .8s var(--ease) forwards; }
+    .hero-rating b { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--sage3); }
+    .hero-rating .stars { color: var(--sand2); letter-spacing: 2px; }
+    .hero-right { position: relative; display: flex; justify-content: center; }
+    .hero-img { width: 100%; max-width: 470px; height: 600px; object-fit: cover; border-radius: 18px; box-shadow: var(--shadow); background: linear-gradient(135deg, var(--sage), var(--sage3)); }
+    .hero-chip { position: absolute; bottom: 1.6rem; left: -1rem; background: #fff; border-radius: 14px; box-shadow: var(--shadow); padding: .9rem 1.2rem; display: flex; align-items: center; gap: .7rem; }
+    .hero-chip svg { width: 24px; height: 24px; color: var(--sage2); }
+    .hero-chip strong { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--sage3); display: block; line-height: 1; }
+    .hero-chip span { font-size: .74rem; color: var(--muted); }
+
+    /* SECTION SHARED */
+    section { padding: 8rem 8%; }
+    .eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--sage2); margin-bottom: 1.1rem; display: inline-flex; align-items: center; gap: .8rem; }
+    .eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--sage); }
+    .eyebrow.center { justify-content: center; }
+    .eyebrow.center::before { display: none; }
+    h2.title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.3rem, 4.2vw, 3.6rem); font-weight: 500; line-height: 1.12; margin-bottom: 1.3rem; color: var(--sage3); }
+    h2.title em { font-style: italic; color: var(--sand2); }
+    .lead { font-size: 1rem; line-height: 1.85; color: var(--ink2); max-width: 560px; }
+
+    /* HELP */
+    #pomoc { background: var(--paper); }
+    .help-head { text-align: center; max-width: 640px; margin: 0 auto 3.5rem; }
+    .help-head .eyebrow { justify-content: center; }
+    .help-head .eyebrow::before { display: none; }
+    .help-head .lead { margin: 0 auto; }
+    .help-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; max-width: 1100px; margin: 0 auto; }
+    .help-card { background: var(--cream); border: 1px solid var(--line); border-radius: 16px; padding: 2rem 1.9rem; transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s; }
+    .help-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: transparent; }
+    .help-ico { width: 50px; height: 50px; border-radius: 50%; background: rgba(107,125,106,.14); color: var(--sage2); display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; }
+    .help-ico svg { width: 24px; height: 24px; }
+    .help-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--sage3); margin-bottom: .4rem; }
+    .help-card p { font-size: .87rem; color: var(--muted); line-height: 1.65; }
+
+    /* ABOUT */
+    #onas { background: var(--cream); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 5.5rem; align-items: center; }
+    .about-figure { position: relative; }
+    .about-figure img { width: 100%; height: 580px; object-fit: cover; border-radius: 18px; box-shadow: var(--shadow); background: linear-gradient(135deg, var(--cream2), var(--sage)); }
+    .about-text { font-size: 1rem; line-height: 1.95; color: var(--ink2); margin-bottom: 1.8rem; }
+    .about-checks { display: flex; flex-direction: column; gap: .9rem; margin-bottom: 2rem; list-style: none; }
+    .about-checks li { display: flex; align-items: center; gap: .8rem; font-size: .96rem; color: var(--ink); }
+    .about-checks .ck { width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: rgba(107,125,106,.14); color: var(--sage2); display: flex; align-items: center; justify-content: center; }
+    .about-checks .ck svg { width: 15px; height: 15px; }
+
+    /* PROCESS */
+    #proces { background: var(--sage3); color: var(--cream); }
+    #proces h2.title { color: #fff; }
+    #proces h2.title em { color: var(--sand); }
+    #proces .eyebrow { color: var(--sand); }
+    #proces .lead { color: rgba(246,241,234,.72); }
+    .proc-head { text-align: center; max-width: 640px; margin: 0 auto 3.5rem; }
+    .proc-head .eyebrow { justify-content: center; }
+    .proc-head .eyebrow::before { display: none; }
+    .proc-head .lead { margin: 0 auto; }
+    .proc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.6rem; max-width: 1150px; margin: 0 auto; }
+    .proc-step { background: rgba(255,255,255,.05); border: 1px solid rgba(246,241,234,.14); border-radius: 16px; padding: 2rem 1.7rem; }
+    .proc-num { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 600; color: var(--sand); line-height: 1; margin-bottom: .5rem; }
+    .proc-step h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: #fff; margin-bottom: .4rem; }
+    .proc-step p { font-size: .84rem; color: rgba(246,241,234,.62); line-height: 1.6; }
+
+    /* PRICING */
+    #cenik { background: var(--paper); }
+    .cenik-head { text-align: center; max-width: 620px; margin: 0 auto 3rem; }
+    .cenik-head .eyebrow { justify-content: center; }
+    .cenik-head .eyebrow::before { display: none; }
+    .cenik-list { max-width: 720px; margin: 0 auto; }
+    .cenik-row { display: flex; align-items: baseline; gap: 1rem; padding: 1.2rem 0; border-bottom: 1px solid var(--line); }
+    .cenik-row:last-child { border-bottom: none; }
+    .cenik-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--sage3); }
+    .cenik-name small { display: block; font-family: 'Inter', sans-serif; font-size: .8rem; color: var(--muted); margin-top: .1rem; }
+    .cenik-dots { flex: 1; border-bottom: 1px dotted var(--line); transform: translateY(-6px); }
+    .cenik-price { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; color: var(--sand2); white-space: nowrap; }
+    .cenik-note { text-align: center; margin-top: 2.5rem; font-size: .84rem; color: var(--muted); }
+
+    /* TESTIMONIALS */
+    #recenze { background: var(--cream); }
+    .test-head { text-align: center; max-width: 560px; margin: 0 auto 3rem; }
+    .test-slider { position: relative; max-width: 860px; margin: 0 auto; overflow: hidden; }
+    .test-track { display: flex; transition: transform .7s var(--ease); }
+    .test-slide { min-width: 100%; padding: 2rem 3rem; text-align: center; }
+    .test-stars { color: var(--sand2); font-size: 1rem; letter-spacing: 5px; margin-bottom: 1.4rem; }
+    .test-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 500; font-style: italic; line-height: 1.5; color: var(--sage3); margin-bottom: 1.6rem; }
+    .test-author { font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--sage2); }
+    .test-dots { display: flex; justify-content: center; gap: .6rem; margin-top: 2rem; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(107,125,106,.35); border: none; cursor: pointer; transition: all .3s; padding: 0; }
+    .dot.active { background: var(--sage); transform: scale(1.4); }
+
+    /* CONTACT */
+    #kontakt { background: var(--paper); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 5rem; align-items: start; }
+    .contact-reass { background: var(--cream); border: 1px solid var(--line); border-radius: 14px; padding: 1.3rem 1.5rem; display: flex; gap: .9rem; align-items: flex-start; margin-bottom: 2rem; }
+    .contact-reass svg { width: 22px; height: 22px; color: var(--sage2); flex-shrink: 0; margin-top: 2px; }
+    .contact-reass p { font-size: .88rem; color: var(--ink2); line-height: 1.6; }
+    .contact-item { display: flex; gap: 1.3rem; align-items: flex-start; margin-bottom: 2rem; }
+    .contact-ico { width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%; background: var(--cream2); color: var(--sage2); display: flex; align-items: center; justify-content: center; }
+    .contact-ico svg { width: 20px; height: 20px; }
+    .contact-label { font-size: .66rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--sage2); margin-bottom: .25rem; }
+    .contact-val { font-size: .96rem; color: var(--ink); line-height: 1.55; }
+    .map-wrap { margin-top: 1.5rem; width: 100%; height: 200px; background: var(--cream2); overflow: hidden; border-radius: 14px; }
+    .map-wrap iframe { width: 100%; height: 100%; border: none; filter: grayscale(.3); }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; background: #fff; padding: 2.4rem; border-radius: 18px; box-shadow: var(--shadow); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: .45rem; }
+    .form-group label { font-size: .66rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .form-group input, .form-group textarea, .form-group select { background: var(--paper); border: 1px solid var(--line); padding: .9rem 1.1rem; border-radius: 10px; font-family: 'Inter', sans-serif; font-size: .9rem; color: var(--ink); outline: none; transition: border-color .3s, box-shadow .3s; resize: none; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--sage); box-shadow: 0 0 0 3px rgba(107,125,106,.16); }
+    .form-group textarea { height: 110px; }
+    .form-submit { background: var(--sage3); color: #fff; border: none; padding: 1.05rem 2.5rem; cursor: pointer; border-radius: 999px; font-family: 'Inter', sans-serif; font-size: .88rem; font-weight: 600; transition: all .3s; }
+    .form-submit:hover { background: var(--sage2); box-shadow: 0 10px 26px rgba(58,74,63,.28); }
+
+    /* FOOTER */
+    footer { background: var(--sage3); padding: 5rem 8% 2.2rem; color: var(--cream); }
+    .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 4rem; padding-bottom: 3.5rem; border-bottom: 1px solid rgba(246,241,234,.12); margin-bottom: 2rem; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 600; color: var(--cream); text-decoration: none; display: block; margin-bottom: 1rem; }
+    .footer-logo span { color: var(--sand); }
+    .footer-desc { font-size: .84rem; color: rgba(246,241,234,.55); line-height: 1.8; margin-bottom: 1.5rem; }
+    .social-links { display: flex; gap: .7rem; }
+    .social-link { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(246,241,234,.2); display: flex; align-items: center; justify-content: center; color: rgba(246,241,234,.6); text-decoration: none; transition: all .3s; }
+    .social-link svg { width: 16px; height: 16px; }
+    .social-link:hover { border-color: var(--sand); color: var(--sand); }
+    .footer-col h4 { font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(246,241,234,.55); margin-bottom: 1.4rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+    .footer-col ul a { font-size: .84rem; color: rgba(246,241,234,.55); text-decoration: none; transition: color .25s; }
+    .footer-col ul a:hover { color: var(--sand); }
+    .footer-hours li { display: flex; justify-content: space-between; gap: 1rem; font-size: .8rem; color: rgba(246,241,234,.55); padding-bottom: .6rem; margin-bottom: .6rem; border-bottom: 1px solid rgba(246,241,234,.08); }
+    .footer-hours li:last-child { border-bottom: none; }
+    .footer-hours li span:last-child { color: rgba(246,241,234,.8); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .76rem; color: rgba(246,241,234,.35); }
+    .footer-copy a { color: var(--sand); text-decoration: none; }
+
+    #back-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: var(--sage3); color: #fff; border: none; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all .3s; z-index: 500; }
+    #back-top.show { opacity: 1; visibility: visible; }
+    #back-top:hover { background: var(--sage2); }
+
+    [data-r] { opacity: 0; transform: translateY(34px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+    [data-r="left"] { transform: translateX(-34px); }
+    [data-r="right"] { transform: translateX(34px); }
+    [data-r].visible { opacity: 1; transform: none; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } [data-r] { opacity: 1 !important; transform: none !important; } }
+
+    @media (max-width: 1024px) {
+      section { padding: 5.5rem 6%; }
+      #hero { grid-template-columns: 1fr; padding: 7rem 6% 3rem; }
+      .hero-img { height: 70vw; min-height: 400px; }
+      .help-grid { grid-template-columns: 1fr 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-figure img { height: 420px; }
+      .proc-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      #navbar { padding: 1.3rem 6%; }
+      .help-grid { grid-template-columns: 1fr; }
+      .proc-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 480px) { section { padding: 4.5rem 5%; } .hero-btns { flex-direction: column; align-items: stretch; } .btn-solid, .btn-line { text-align: center; } }
+  </style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">Mgr. Klára Nová<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#pomoc">S čím pomáhám</a></li>
+    <li><a href="#onas">O mně</a></li>
+    <li><a href="#proces">Jak to probíhá</a></li>
+    <li><a href="#cenik">Ceník</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="#kontakt" class="nav-cta">Objednat se</a>
+  <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
+</nav>
+
+<div id="mobile-nav">
+  <button class="close-nav" id="close-nav">✕</button>
+  <a href="#pomoc">S čím pomáhám</a>
+  <a href="#onas">O mně</a>
+  <a href="#proces">Jak to probíhá</a>
+  <a href="#cenik">Ceník</a>
+  <a href="#kontakt">Kontakt</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">České Budějovice · i&nbsp;on-line</div>
+    <h1 class="hero-title">Váš prostor pro růst</h1>
+    <p class="hero-sub">Individuální terapie zaměřená na vaše potřeby a cíle.</p>
+    <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Osobně i on-line — nevadí, že jste odjinud</div>
+    <div class="hero-btns">
+      <a href="#kontakt" class="btn-solid">Objednat konzultaci</a>
+      <a href="#pomoc" class="btn-line">S čím mohu pomoci</a>
+    </div>
+    <div class="hero-rating"><span class="stars">★★★★★</span> <b>5.0</b> · 64+ ohlasů klientů</div>
+  </div>
+  <div class="hero-right">
+    <img class="hero-img" src="../stock_photos/photo_1.jpg" alt="Mgr. Klára Nová" onerror="this.style.display='none'">
+    <div class="hero-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg><div><strong>Bezpečný prostor</strong><span>Diskrétně a bez hodnocení</span></div></div>
+  </div>
+</section>
+
+<!-- HELP -->
+<section id="pomoc">
+  <div class="help-head" data-r>
+    <div class="eyebrow center">S čím pomáhám</div>
+    <h2 class="title">Nemusíte na to <em>být sami</em></h2>
+    <p class="lead">Ať procházíte čímkoliv, společně tomu dáme smysl a najdeme cestu dál — vaším tempem a v bezpečí.</p>
+  </div>
+  <div class="help-grid">
+    <div class="help-card" data-r>
+      <div class="help-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s5 4 5 9a5 5 0 0 1-10 0c0-2 1-3 1-3s0 2 2 2c0-3 2-5 2-8z"/></svg></div>
+      <h3>Úzkost a stres</h3><p>Vnitřní neklid, obavy a tlak, který vás vyčerpává v práci i doma.</p>
+    </div>
+    <div class="help-card" data-r>
+      <div class="help-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></div>
+      <h3>Vztahové potíže</h3><p>Nedorozumění, odcizení a hledání cesty zpět k blízkosti.</p>
+    </div>
+    <div class="help-card" data-r>
+      <div class="help-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 22a10 10 0 1 1 0-20M12 8l3 3-3 3-3-3z"/></svg></div>
+      <h3>Životní krize a změny</h3><p>Náročná období, ztráta i rozhodnutí, na která nejste sami.</p>
+    </div>
+    <div class="help-card" data-r>
+      <div class="help-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 3.9 4.3.6-3.1 3 .7 4.3L12 12.8 8.2 14.8l.7-4.3-3.1-3 4.3-.6z"/></svg></div>
+      <h3>Sebevědomí a hranice</h3><p>Posílení vlastní hodnoty a schopnosti říct zdravé „ne".</p>
+    </div>
+    <div class="help-card" data-r>
+      <div class="help-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></div>
+      <h3>Smutek a vyhoření</h3><p>Dlouhodobá únava, ztráta radosti a chuti — a cesta zpět k energii.</p>
+    </div>
+    <div class="help-card" data-r>
+      <div class="help-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10M12 10a4 4 0 1 0-4-4M6 20c0-3 3-5 6-5s6 2 6 5"/></svg></div>
+      <h3>Osobní růst</h3><p>Lepší porozumění sobě samému a vědomé kroky ke změně.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="onas">
+  <div class="about-grid">
+    <div class="about-figure" data-r="left">
+      <img src="../stock_photos/photo_2.jpg" alt="O mně – Mgr. Klára Nová" onerror="this.style.visibility='hidden'">
+    </div>
+    <div data-r="right">
+      <div class="eyebrow">O mně</div>
+      <h2 class="title">Bezpečný prostor pro <em>vaše téma</em></h2>
+      <p class="about-text">Věřím, že každý člověk má v sobě sílu překonat těžkosti – někdy potřebuje jen průvodce. Nabízím individuální terapii, párové poradenství a skupinové workshopy. Přijďte, jak jste.</p>
+      <ul class="about-checks">
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Individuální a respektující přístup</li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Naprostá diskrétnost a mlčenlivost</li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Konzultace osobně i on-line pro celou ČR</li>
+      </ul>
+      <a href="#kontakt" class="btn-solid">Domluvit setkání</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="proces">
+  <div class="proc-head" data-r>
+    <div class="eyebrow center">Jak spolupráce probíhá</div>
+    <h2 class="title">První krok je <em>nejtěžší</em></h2>
+    <p class="lead">A často stačí ho udělat jen jednou. Dál už jdeme společně, ve vašem tempu.</p>
+  </div>
+  <div class="proc-grid">
+    <div class="proc-step" data-r><div class="proc-num">01</div><h3>Nezávazný kontakt</h3><p>Napište nebo zavolejte. V klidu probereme, co vás přivádí.</p></div>
+    <div class="proc-step" data-r><div class="proc-num">02</div><h3>První setkání</h3><p>Seznámíme se a společně pojmenujeme, na čem chcete pracovat.</p></div>
+    <div class="proc-step" data-r><div class="proc-num">03</div><h3>Společná práce</h3><p>Setkáváme se pravidelně tempem, které vám vyhovuje.</p></div>
+    <div class="proc-step" data-r><div class="proc-num">04</div><h3>Váš posun</h3><p>Krok za krokem nacházíte úlevu, jasnost a novou sílu.</p></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="cenik">
+  <div class="cenik-head" data-r>
+    <div class="eyebrow center">Ceník</div>
+    <h2 class="title">Jasné a férové <em>podmínky</em></h2>
+  </div>
+  <div class="cenik-list" data-r>
+    <div class="cenik-row"><div class="cenik-name">Individuální konzultace<small>50 minut</small></div><span class="cenik-dots"></span><span class="cenik-price">od 800 Kč</span></div>
+    <div class="cenik-row"><div class="cenik-name">Párová konzultace<small>80 minut</small></div><span class="cenik-dots"></span><span class="cenik-price">od 1 300 Kč</span></div>
+    <div class="cenik-row"><div class="cenik-name">On-line konzultace<small>50 minut, odkudkoliv</small></div><span class="cenik-dots"></span><span class="cenik-price">od 800 Kč</span></div>
+    <div class="cenik-row"><div class="cenik-name">Úvodní telefonát<small>krátké seznámení</small></div><span class="cenik-dots"></span><span class="cenik-price">zdarma</span></div>
+  </div>
+  <p class="cenik-note">Nejste si jistí, co potřebujete? Ozvěte se — v klidu to společně probereme.</p>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="recenze">
+  <div class="test-head" data-r>
+    <div class="eyebrow center">Ohlasy klientů</div>
+    <h2 class="title">Slova těch, kterým <em>se ulevilo</em></h2>
+  </div>
+  <div class="test-slider" data-r>
+    <div class="test-track" id="test-track">
+      <div class="test-slide"><div class="test-stars">★★★★★</div><p class="test-quote">Poprvé jsem měla pocit, že mě někdo opravdu slyší. Bez hodnocení, jen s pochopením. Moc děkuji.</p><div class="test-author">Klientka · České Budějovice</div></div>
+      <div class="test-slide"><div class="test-stars">★★★★★</div><p class="test-quote">Přišel jsem s úzkostí, se kterou jsem si nevěděl rady. Dnes vím, že na to nejsem sám — a to mění všechno.</p><div class="test-author">Klient · České Budějovice</div></div>
+      <div class="test-slide"><div class="test-stars">★★★★★</div><p class="test-quote">Vážím si klidného a lidského přístupu. Konečně místo, kam se nebojím přijít i s těžkými tématy.</p><div class="test-author">Klientka · České Budějovice</div></div>
+      <div class="test-slide"><div class="test-stars">★★★★★</div><p class="test-quote">On-line konzultace mi umožnily pokračovat i na dálku. Profesionální, vstřícné a moc pomáhající.</p><div class="test-author">Klient · České Budějovice</div></div>
+    </div>
+  </div>
+  <div class="test-dots" id="test-dots">
+    <button class="dot active" data-i="0"></button><button class="dot" data-i="1"></button><button class="dot" data-i="2"></button><button class="dot" data-i="3"></button>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="kontakt">
+  <div class="contact-grid">
+    <div data-r="left">
+      <div class="eyebrow">Objednání</div>
+      <h2 class="title">Ozvěte se, <em>jsem tu pro vás</em></h2>
+      <div class="contact-reass" style="margin-top:1.6rem;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+        <p>Vše, co mi napíšete, zůstává důvěrné. Není třeba nic řešit dopředu — stačí první krok.</p>
+      </div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div><div class="contact-label">Adresa</div><div class="contact-val">Nádražní 15, 370 01 České Budějovice</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div>
+          <div><div class="contact-label">Telefon</div><div class="contact-val">+420 777 258 147</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+          <div><div class="contact-label">E-mail</div><div class="contact-val">terapie@klaranova.cz</div></div>
+        </div>
+      </div>
+      <div class="map-wrap"><iframe src="https://maps.google.com/maps?q=48.974,14.474&output=embed" allowfullscreen loading="lazy" title="Mapa – Mgr. Klára Nová"></iframe></div>
+    </div>
+    <div data-r="right">
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-row">
+          <div class="form-group"><label>Jméno</label><input type="text" placeholder="Vaše jméno"></div>
+          <div class="form-group"><label>Telefon</label><input type="tel" placeholder="+420…"></div>
+        </div>
+        <div class="form-group"><label>Forma konzultace</label>
+          <select><option>Osobně</option><option>On-line</option><option>Zatím nevím</option></select>
+        </div>
+        <div class="form-group"><label>Zpráva</label><textarea placeholder="Můžete napsat jen pár slov o tom, co vás přivádí. Nemusíte nic vysvětlovat dopředu…"></textarea></div>
+        <button type="submit" class="form-submit">Odeslat nezávaznou zprávu</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="footer-logo">Mgr. Klára Nová<span>.</span></a>
+      <p class="footer-desc">Bezpečné místo pro vaše myšlenky a emoce.</p>
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14V9z"/></svg></a>
+        <a href="#" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Nabízím</h4>
+      <ul><li><a href="#pomoc">S čím pomáhám</a></li><li><a href="#onas">O mně</a></li><li><a href="#proces">Jak to probíhá</a></li><li><a href="#cenik">Ceník</a></li><li><a href="#kontakt">Objednání</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Konzultace</h4>
+      <ul class="footer-hours"><li><span>Po–Pá</span><span>dle objednání</span></li><li><span>Osobně</span><span>České Budějovice</span></li><li><span>On-line</span><span>celá ČR</span></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <ul><li><a href="#">Nádražní 15</a></li><li><a href="tel:+420 777 258 147">+420 777 258 147</a></li><li><a href="#">terapie@klaranova.cz</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Mgr. Klára Nová · Vytvořeno s ❤️ od <a href="https://strankyprovas.cz">StránkyProVás</a></p>
+    <p class="footer-copy">Všechna práva vyhrazena</p>
+  </div>
+</footer>
+
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Nahoru">↑</button>
+
+<script>
+window.addEventListener('scroll', () => {
+  const s = window.scrollY, h = document.documentElement.scrollHeight - innerHeight;
+  document.getElementById('progress').style.transform = `scaleX(${s/h})`;
+  document.getElementById('navbar').classList.toggle('scrolled', s > 60);
+  document.getElementById('back-top').classList.toggle('show', s > 400);
+}, {passive:true});
+
+const ham = document.getElementById('ham'), mNav = document.getElementById('mobile-nav');
+ham.addEventListener('click', () => mNav.classList.add('open'));
+document.getElementById('close-nav').addEventListener('click', () => mNav.classList.remove('open'));
+mNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mNav.classList.remove('open')));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', e => { const el = document.querySelector(a.getAttribute('href')); if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); } }); });
+
+const revObs = new IntersectionObserver(es => { es.forEach((e,i) => { if(e.isIntersecting){ setTimeout(() => e.target.classList.add('visible'), i*70); revObs.unobserve(e.target); } }); }, {threshold:.12});
+document.querySelectorAll('[data-r]').forEach(el => revObs.observe(el));
+
+let cur=0; const track=document.getElementById('test-track'), dots=document.querySelectorAll('.dot'), slides=track.querySelectorAll('.test-slide');
+function goTo(n){ cur=n; track.style.transform=`translateX(-${n*100}%)`; dots.forEach((d,i)=>d.classList.toggle('active',i===n)); }
+dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
+setInterval(() => goTo((cur+1)%slides.length), 5000);
+</script>
+</body>
+</html>
