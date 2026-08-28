@@ -23,13 +23,12 @@
       --bline:rgba(246,241,234,.14); --btxt:rgba(246,241,234,.72); --btxt2:rgba(246,241,234,.6);
       --ease: cubic-bezier(0.4, 0, 0.2, 1);
     }
-    body { font-family: 'Inter', sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; -webkit-font-smoothing: antialiased; margin-top: 40px; }
+    body { font-family: 'Inter', sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; -webkit-font-smoothing: antialiased;  }
     ::selection { background: var(--c3); color: #fff; }
-    #ukazka-banner { position: fixed; top: 0; left: 0; width: 100%; background: var(--c1); color: #fff; text-align: center; padding: 10px; font-size: 14px; font-weight: 600; z-index: 9999; }
-    #progress { position: fixed; top: 40px; left: 0; right: 0; height: 2px; background: var(--c1); transform-origin: left; transform: scaleX(0); z-index: 9998; transition: transform .1s linear; }
+    #progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; background: var(--c1); transform-origin: left; transform: scaleX(0); z-index: 9998; transition: transform .1s linear; }
 
     /* NAV */
-    #navbar { position: fixed; top: 40px; left: 0; right: 0; z-index: 1000; padding: 1.5rem 5%; display: flex; align-items: center; justify-content: space-between; transition: all .4s var(--ease); }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.5rem 5%; display: flex; align-items: center; justify-content: space-between; transition: all .4s var(--ease); }
     #navbar.scrolled { background: rgba(255,255,255,.9); background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(14px); padding: .95rem 5%; box-shadow: 0 1px 0 var(--line); }
     .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; color: var(--c3); text-decoration: none; letter-spacing: .01em; line-height: 1; }
     .nav-logo span { color: var(--acc2); }
@@ -67,7 +66,7 @@
     .btn-line:hover { background: var(--c3); color: #fff; border-color: var(--c3); }
 
     /* HERO (index) */
-    #hero { min-height: calc(100vh - 40px); background: linear-gradient(165deg, var(--paper) 0%, var(--cream2) 100%); display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 4rem; padding: 8rem 8% 4rem; }
+    #hero { min-height: 100vh; background: linear-gradient(165deg, var(--paper) 0%, var(--cream2) 100%); display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 4rem; padding: 8rem 8% 4rem; }
     .hero-left { max-width: 580px; }
     .hero-eyebrow { font-size: .74rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--c2); margin-bottom: 1.6rem; display: inline-flex; align-items: center; gap: 1rem; opacity: 0; animation: fadeUp .9s .2s var(--ease) forwards; }
     .hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--c1); }
@@ -285,7 +284,6 @@
 </style>
 </head>
 <body>
-<div id="ukazka-banner">⚡ UKÁZKA – návrh nového webu pro AVIS-TERAPIE</div>
 <div id="progress"></div>
 
 <nav id="navbar">
@@ -342,7 +340,7 @@
       <h2 class="title">Terapie v <em>daseinsanalytickém</em> směru</h2>
       <p>Ráda bych Vám nabídla terapii v daseinsanalytickém směru, který je mi svou filozofií a přístupem k člověku velmi blízký. V základu daseinsanalýzy je metoda rozhovoru, „vrozumívání" se do situace druhého, bez předem daných konstruktů a technik – a vytvoření prostoru pro bytostné setkání, které je onou filozofickou péčí o duši.</p>
       <p>Můžete očekávat atmosféru přijetí, bezpečný prostor bez tlaku, otevřenost, partnerský přístup a respekt k Vaší jedinečnosti a životnímu příběhu. V terapii je čas a prostor jenom Váš. Zde se můžete zastavit, vše si v klidu promýšlet, pojmenovávat, být sami sebou a u sebe.</p>
-      <p>V procesu terapie jde v podstatě o hledání rovnováhy mezi láskou a svobodou ve vztazích, o zodpovězení bytostné otázky <em>„Jak být sám sebou a zároveň s druhými"</em>. Protože potřeby každého člověka jsou zcela individuální, může se jednat o jedno sezení, spolupráci na několik týdnů, ale i na mnoho let. Záleží jen na Vás, na Vaší motivaci a touze po změně.</p>
+      <p>V procesu terapie jde v podstatě o hledání rovnováhy mezi láskou a svobodou ve vztazích, o zodpovězení bytostné otázky <em>„Jak být sám sebou a zároveň s druhými"</em> (doc. PhDr. Oldřich Čálek, CSc.). Protože potřeby každého člověka jsou zcela individuální, může se jednat o jedno sezení, spolupráci na několik týdnů, ale i na mnoho let. Záleží jen na Vás, na Vaší motivaci a touze po změně.</p>
       <p>Pokud se rozhodnete pro terapii a objednáte se, ráda Vás budu doprovázet na Vaší cestě k větší osobní pohodě, autentickému prožívání, vnitřní svobodě a životu „z vlastního pramene". Těším se na setkání s Vámi!</p>
     </div>
     <aside class="oc-side" data-r="right">
@@ -453,9 +451,6 @@
     <h2 class="title">První krok je <em>nejtěžší</em></h2>
     <p class="lead">Objednání na konzultaci je možné e-mailem nebo telefonicky. V klidu probereme, co Vás přivádí.</p>
     <a href="kontakt.html" class="btn-solid">Objednat se</a>
-  </div>
-  <div style="text-align:center;margin:3.5rem 0 0;">
-    <a href="mailto:matyas.vrbaa@gmail.com?subject=Mám zájem o web – AVIS-TERAPIE" style="display:inline-block;background:var(--c3);color:#fff;border-radius:999px;padding:15px 40px;font-size:16px;text-decoration:none;font-weight:600;opacity:.9;">Chci takový web</a>
   </div>
 </section>
 

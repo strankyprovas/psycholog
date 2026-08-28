@@ -23,13 +23,12 @@
       --bline:rgba(246,241,234,.14); --btxt:rgba(246,241,234,.72); --btxt2:rgba(246,241,234,.6);
       --ease: cubic-bezier(0.4, 0, 0.2, 1);
     }
-    body { font-family: 'Inter', sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; -webkit-font-smoothing: antialiased; margin-top: 40px; }
+    body { font-family: 'Inter', sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; -webkit-font-smoothing: antialiased;  }
     ::selection { background: var(--c3); color: #fff; }
-    #ukazka-banner { position: fixed; top: 0; left: 0; width: 100%; background: var(--c1); color: #fff; text-align: center; padding: 10px; font-size: 14px; font-weight: 600; z-index: 9999; }
-    #progress { position: fixed; top: 40px; left: 0; right: 0; height: 2px; background: var(--c1); transform-origin: left; transform: scaleX(0); z-index: 9998; transition: transform .1s linear; }
+    #progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; background: var(--c1); transform-origin: left; transform: scaleX(0); z-index: 9998; transition: transform .1s linear; }
 
     /* NAV */
-    #navbar { position: fixed; top: 40px; left: 0; right: 0; z-index: 1000; padding: 1.5rem 5%; display: flex; align-items: center; justify-content: space-between; transition: all .4s var(--ease); }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.5rem 5%; display: flex; align-items: center; justify-content: space-between; transition: all .4s var(--ease); }
     #navbar.scrolled { background: rgba(255,255,255,.9); background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(14px); padding: .95rem 5%; box-shadow: 0 1px 0 var(--line); }
     .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; color: var(--c3); text-decoration: none; letter-spacing: .01em; line-height: 1; }
     .nav-logo span { color: var(--acc2); }
@@ -67,7 +66,7 @@
     .btn-line:hover { background: var(--c3); color: #fff; border-color: var(--c3); }
 
     /* HERO (index) */
-    #hero { min-height: calc(100vh - 40px); background: linear-gradient(165deg, var(--paper) 0%, var(--cream2) 100%); display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 4rem; padding: 8rem 8% 4rem; }
+    #hero { min-height: 100vh; background: linear-gradient(165deg, var(--paper) 0%, var(--cream2) 100%); display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 4rem; padding: 8rem 8% 4rem; }
     .hero-left { max-width: 580px; }
     .hero-eyebrow { font-size: .74rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--c2); margin-bottom: 1.6rem; display: inline-flex; align-items: center; gap: 1rem; opacity: 0; animation: fadeUp .9s .2s var(--ease) forwards; }
     .hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--c1); }
@@ -285,7 +284,6 @@
 </style>
 </head>
 <body>
-<div id="ukazka-banner">⚡ UKÁZKA – návrh nového webu pro AVIS-TERAPIE</div>
 <div id="progress"></div>
 
 <nav id="navbar">
@@ -329,7 +327,7 @@
       <p>Původním vzděláním jsem zdravotní laborantka a několik let jsem pracovala na oddělení klinické biochemie v Praze. Po rodičovské dovolené jsem dostala nabídku nastoupit jako učitelka v mateřské škole, při které jsem si doplnila magisterské vzdělání na Pedagogické fakultě UK v Praze, v oboru Pedagogika předškolního věku. S dětmi jsem pracovala 14 let, poslední tři roky i v pozici ředitelky MŠ. V každodenním kontaktu s dětmi a rodiči mě stále víc oslovovala problematika rodinných a mezilidských vztahů, kterým jsem chtěla více porozumět.</p>
       <p>V roce 2016 jsem započala psychoterapeutický výcvik v daseinsanalytickém směru a v pracovní rovině se posunula do neziskové oblasti, kde jsem působila jako socioterapeut a vedoucí Sociálně aktivizační služby pro rodiny s dětmi.</p>
       <p>Od roku 2022 se věnuji klientům v soukromé praxi a od 7/2026 splňuji podmínky pro poskytování nové vázané živnosti <strong>Poradenská psychoterapie</strong>.</p>
-      <p>Při své práci ctím <a href="https://czap.cz/resources/Documents/kl%c3%ad%c4%8dov%c3%a9%20dokumenty%20kodex%20a%20z%c3%a1sady/ETICKY_KODEX_C%cc%8cAP_WEB.pdf" target="_blank" rel="noopener">Etický kodex České asociace pro psychoterapii</a>, dodržuji princip mlčenlivosti a důvěry, včetně všech nařízení o ochraně osobních údajů (GDPR). Svoji práci pravidelně konzultuji v individuální nebo skupinové supervizi v DA psychoterapeutickém směru.</p>
+      <p>Při své práci ctím <a href="https://czap.cz/resources/Documents/kl%c3%ad%c4%8dov%c3%a9%20dokumenty%20kodex%20a%20z%c3%a1sady/ETICKY_KODEX_C%cc%8cAP_WEB.pdf" target="_blank" rel="noopener">Etický kodex České asociace pro psychoterapii</a>, dodržuji princip mlčenlivosti a důvěry, včetně všech nařízení o ochraně osobních údajů (GDPR). V rámci profesního vzdělávání se zúčastňuji odborných přednášek a seminářů. Svoji práci pravidelně konzultuji v individuální nebo skupinové supervizi v DA psychoterapeutickém směru.</p>
     </div>
   </div>
 </section>
