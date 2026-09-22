@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marie Anna Roth · Psychoterapie s celostními metodami — Milovice</title>
+  <meta name="description" content="Psychoterapie, kineziologie One Brain, terapie traumatu, homeopatie a biorezonanční diagnostika. Individuální přístup pro děti i dospělé. Milovice, tel. 777 000 602.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --fial: #6a4fa3;          /* hlavní fialová */
+      --fial-tm: #4b3577;       /* tmavá fialová */
+      --fial-sv: #9b83c9;       /* světlá fialová */
+      --lila: #f6f3fa;          /* lila podklad */
+      --lila2: #efe9f7;
+      --ink: #2b2439;
+      --ink2: #5b5370;
+      --line: #e3dcef;
+      --bila: #fdfcfe;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; color: var(--ink); background: var(--bila); line-height: 1.65; font-weight: 300; }
+    h1,h2,h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; line-height: 1.18; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    section { padding: 5.5rem 6%; }
+    .eyebrow { font-size: .78rem; letter-spacing: .22em; text-transform: uppercase; color: var(--fial); font-weight: 500; margin-bottom: .9rem; }
+    .eyebrow.center { text-align: center; }
+    .title { font-size: clamp(1.9rem, 3.6vw, 2.7rem); color: var(--ink); }
+    .title em { font-style: italic; color: var(--fial); }
+    .lead { max-width: 640px; color: var(--ink2); margin-top: 1rem; }
+    [data-r] { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+    [data-r].visible { opacity: 1; transform: none; }
+    [data-r="left"] { transform: translateX(-30px); }
+    [data-r="right"] { transform: translateX(30px); }
+    [data-r].visible { transform: none; }
+
+    /* ---------- horní lišta ---------- */
+    .topbar { background: var(--fial-tm); color: #efeaf8; font-size: .84rem; display: flex; justify-content: center; gap: 2.2rem; padding: .45rem 5%; flex-wrap: wrap; }
+    .topbar a { color: #fff; text-decoration: none; font-weight: 400; display: inline-flex; align-items: center; gap: .45rem; }
+    .topbar svg { width: 14px; height: 14px; }
+
+    /* ---------- navigace ---------- */
+    #navbar { position: sticky; top: 0; z-index: 100; background: rgba(253,252,254,.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; padding: .85rem 5%; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 700; text-decoration: none; color: var(--ink); }
+    .nav-logo span { color: var(--fial); }
+    .nav-links { display: flex; gap: .3rem; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: .9rem; color: var(--ink2); padding: .5rem .85rem; border-radius: 999px; transition: .25s; }
+    .nav-links a:hover { background: var(--lila2); color: var(--fial-tm); }
+    .nav-cta { background: var(--fial); color: #fff !important; border-radius: 999px; padding: .6rem 1.5rem !important; font-weight: 500; text-decoration: none; font-size: .88rem; transition: .25s; }
+    .nav-cta:hover { background: var(--fial-tm) !important; }
+    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
+    .hamburger span { width: 24px; height: 2px; background: var(--ink); display: block; }
+    #mobile-nav { position: fixed; inset: 0; background: var(--bila); z-index: 200; display: none; flex-direction: column; gap: .4rem; padding: 5rem 8%; font-size: 1.35rem; font-family: 'Cormorant Garamond', serif; }
+    #mobile-nav.open { display: flex; }
+    #mobile-nav a { text-decoration: none; padding: .55rem 0; border-bottom: 1px solid var(--line); }
+    .close-nav { position: absolute; top: 1.2rem; right: 1.4rem; background: none; border: 1px solid var(--line); border-radius: 50%; width: 42px; height: 42px; font-size: 1rem; cursor: pointer; color: var(--ink); }
+
+    /* ---------- hero ---------- */
+    #hero { display: grid; grid-template-columns: 1.08fr .92fr; gap: 4rem; align-items: center; padding: 4.5rem 6% 5rem; background: linear-gradient(180deg, var(--lila) 0%, var(--bila) 100%); }
+    .hero-title { font-size: clamp(2.3rem, 4.6vw, 3.5rem); }
+    .hero-title em { font-style: italic; color: var(--fial); }
+    .hero-sub { color: var(--ink2); margin: 1.3rem 0 1.9rem; max-width: 540px; font-size: 1.04rem; }
+    .hero-btns { display: flex; gap: .9rem; flex-wrap: wrap; }
+    .btn-solid { background: var(--fial); color: #fff; text-decoration: none; border-radius: 999px; padding: .85rem 2rem; font-size: .92rem; font-weight: 500; transition: .25s; }
+    .btn-solid:hover { background: var(--fial-tm); }
+    .btn-line { border: 1px solid var(--fial-sv); color: var(--fial-tm); text-decoration: none; border-radius: 999px; padding: .85rem 2rem; font-size: .92rem; transition: .25s; }
+    .btn-line:hover { background: var(--lila2); }
+    .hero-chips { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 1.9rem; }
+    .chip { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: .42rem 1rem; font-size: .8rem; color: var(--ink2); display: inline-flex; align-items: center; gap: .45rem; }
+    .chip svg { width: 14px; height: 14px; color: var(--fial); flex-shrink: 0; }
+    .hero-right { position: relative; }
+    .hero-foto { border-radius: 20px; box-shadow: 0 28px 60px rgba(75,53,119,.22); position: relative; z-index: 1; }
+    .hero-ram { position: absolute; top: 22px; left: 22px; right: -22px; bottom: -22px; border: 1px solid var(--fial-sv); border-radius: 20px; z-index: 0; }
+    .hero-badge { position: absolute; bottom: -18px; left: -14px; z-index: 2; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: .75rem 1.2rem; box-shadow: 0 14px 34px rgba(75,53,119,.14); font-size: .82rem; }
+    .hero-badge strong { display: block; font-weight: 600; color: var(--fial-tm); }
+    .hero-badge span { color: var(--ink2); }
+
+    /* ---------- citát ---------- */
+    .quote-strip { background: var(--fial-tm); color: #fff; text-align: center; padding: 3.2rem 8%; }
+    .quote-strip blockquote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; font-size: clamp(1.25rem, 2.3vw, 1.7rem); max-width: 820px; margin: 0 auto; line-height: 1.55; }
+
+    /* ---------- one brain ---------- */
+    .ob-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 4rem; align-items: center; max-width: 1180px; margin: 0 auto; }
+    .ob-foto { border-radius: 18px; box-shadow: 0 22px 50px rgba(75,53,119,.16); }
+    .ob-text p { color: var(--ink2); margin-top: 1rem; font-size: .97rem; }
+    .ob-body { background: var(--lila); border-left: 3px solid var(--fial); border-radius: 0 14px 14px 0; padding: 1.1rem 1.4rem; margin-top: 1.4rem; font-size: .93rem; color: var(--ink2); }
+
+    /* ---------- témata ---------- */
+    #temata { background: var(--lila); }
+    .tem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; max-width: 1180px; margin: 2.6rem auto 0; }
+    .tem-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 1.6rem 1.7rem; transition: .3s; }
+    .tem-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(75,53,119,.12); }
+    .tem-card h3 { font-size: 1.22rem; margin-bottom: .45rem; color: var(--fial-tm); }
+    .tem-card p { font-size: .88rem; color: var(--ink2); }
+
+    /* ---------- metody ---------- */
+    .met-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.4rem; max-width: 1180px; margin: 2.6rem auto 0; }
+    .met-card { border: 1px solid var(--line); border-radius: 18px; padding: 1.9rem; background: var(--bila); position: relative; transition: .3s; }
+    .met-card:hover { border-color: var(--fial-sv); box-shadow: 0 18px 40px rgba(75,53,119,.1); }
+    .met-ico { width: 46px; height: 46px; border-radius: 12px; background: var(--lila2); color: var(--fial); display: grid; place-items: center; margin-bottom: 1.1rem; }
+    .met-ico svg { width: 24px; height: 24px; }
+    .met-card h3 { font-size: 1.35rem; margin-bottom: .5rem; }
+    .met-card p { font-size: .9rem; color: var(--ink2); }
+
+    /* ---------- ceník ---------- */
+    #cenik { background: var(--lila); }
+    .cen-tab { max-width: 940px; margin: 2.6rem auto 0; background: #fff; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+    .cen-row { display: grid; grid-template-columns: 1.2fr 1.6fr auto; gap: 1.2rem; align-items: center; padding: 1.15rem 1.7rem; border-bottom: 1px solid var(--line); }
+    .cen-row:last-child { border-bottom: none; }
+    .cen-nazev { font-weight: 500; font-size: .95rem; }
+    .cen-pop { font-size: .84rem; color: var(--ink2); }
+    .cen-cena { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.2rem; color: var(--fial-tm); white-space: nowrap; }
+    .cen-note { text-align: center; font-size: .82rem; color: var(--ink2); max-width: 720px; margin: 1.4rem auto 0; }
+
+    /* ---------- ohlasy ---------- */
+    .oh-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.4rem; max-width: 1180px; margin: 2.6rem auto 0; }
+    .oh-card { background: var(--lila); border-radius: 18px; padding: 1.9rem; font-size: .92rem; color: var(--ink2); position: relative; }
+    .oh-card::before { content: "„"; font-family: 'Cormorant Garamond', serif; font-size: 3.4rem; color: var(--fial-sv); line-height: 1; display: block; margin-bottom: .2rem; }
+    .oh-autor { margin-top: 1rem; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; color: var(--fial-tm); }
+
+    /* ---------- o mně ---------- */
+    #omne { background: var(--bila); }
+    .om-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 4rem; align-items: start; max-width: 1180px; margin: 0 auto; }
+    .om-foto { border-radius: 18px; box-shadow: 0 22px 50px rgba(75,53,119,.16); }
+    .om-text p { color: var(--ink2); margin-top: 1rem; font-size: .97rem; }
+    .om-vzd { margin-top: 1.6rem; display: grid; gap: .55rem; }
+    .om-vzd li { list-style: none; display: flex; gap: .7rem; align-items: flex-start; font-size: .9rem; color: var(--ink2); }
+    .om-vzd svg { width: 17px; height: 17px; color: var(--fial); flex-shrink: 0; margin-top: .22rem; }
+
+    /* ---------- kontakt ---------- */
+    #kontakt { background: var(--lila); }
+    .kon-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 3.5rem; max-width: 1180px; margin: 0 auto; align-items: start; }
+    .kon-item { display: flex; gap: 1rem; align-items: flex-start; margin-top: 1.5rem; }
+    .kon-ico { width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid var(--line); color: var(--fial); display: grid; place-items: center; flex-shrink: 0; }
+    .kon-ico svg { width: 20px; height: 20px; }
+    .kon-label { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--fial); font-weight: 500; }
+    .kon-val { font-size: .98rem; color: var(--ink); }
+    .kon-val a { text-decoration: none; }
+    .mapa { margin-top: 2rem; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); }
+    .mapa iframe { width: 100%; height: 230px; border: 0; display: block; }
+    .form { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 2.2rem; box-shadow: 0 20px 46px rgba(75,53,119,.1); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    .fg { margin-bottom: 1.1rem; }
+    .fg label { display: block; font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--fial-tm); font-weight: 500; margin-bottom: .4rem; }
+    .fg input, .fg select, .fg textarea { width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: .8rem .95rem; font-family: inherit; font-size: .93rem; color: var(--ink); background: var(--bila); }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { outline: 2px solid var(--fial-sv); border-color: transparent; }
+    .fg textarea { min-height: 110px; resize: vertical; }
+    .form-btn { width: 100%; background: var(--fial); color: #fff; border: none; border-radius: 999px; padding: .95rem; font-family: inherit; font-size: .95rem; font-weight: 500; letter-spacing: .06em; cursor: pointer; transition: .25s; }
+    .form-btn:hover { background: var(--fial-tm); }
+
+    /* ---------- footer ---------- */
+    footer { background: var(--fial-tm); color: #cfc3e6; padding: 3.5rem 6% 2rem; }
+    .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2.5rem; max-width: 1180px; margin: 0 auto; }
+    .foot-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: #fff; text-decoration: none; }
+    .foot-grid h4 { color: #fff; font-family: 'Jost', sans-serif; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 500; margin-bottom: .9rem; }
+    .foot-grid ul { list-style: none; display: grid; gap: .45rem; font-size: .88rem; }
+    .foot-grid a { color: #cfc3e6; text-decoration: none; }
+    .foot-grid a:hover { color: #fff; }
+    .foot-bottom { max-width: 1180px; margin: 2.5rem auto 0; border-top: 1px solid rgba(255,255,255,.14); padding-top: 1.4rem; font-size: .8rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+    .foot-bottom a { color: #fff; text-decoration: none; }
+
+    @media (max-width: 960px) {
+      .nav-links, #navbar .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      #hero, .ob-grid, .om-grid, .kon-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-right { max-width: 480px; }
+      .cen-row { grid-template-columns: 1fr; gap: .3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      section { padding: 4rem 6%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="mailto:info@ahomeopatie.cz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>info@ahomeopatie.cz</a>
+  <a href="tel:+420777000602"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>+420 777 000 602</a>
+</div>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">Marie Anna Roth<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#onebrain">One Brain</a></li>
+    <li><a href="#temata">S čím pomáhám</a></li>
+    <li><a href="#metody">Metody</a></li>
+    <li><a href="#cenik">Ceník</a></li>
+    <li><a href="#omne">O mně</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="#kontakt" class="nav-cta">Objednat se</a>
+  <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
+</nav>
+
+<div id="mobile-nav">
+  <button class="close-nav" id="close-nav">✕</button>
+  <a href="#onebrain">One Brain</a>
+  <a href="#temata">S čím pomáhám</a>
+  <a href="#metody">Metody</a>
+  <a href="#cenik">Ceník</a>
+  <a href="#omne">O mně</a>
+  <a href="#kontakt">Kontakt</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div>
+    <div class="eyebrow">Psychoterapie s celostními metodami · Milovice</div>
+    <h1 class="hero-title">Terapie, která vidí <em>člověka jako celek</em></h1>
+    <p class="hero-sub">Kombinací psychoterapie, kineziologie One Brain, terapie traumatu a homeopatie pečuji o zdraví po psychické i fyzické stránce. Pomáhám dětem, dospívajícím, dospělým i celým rodinám najít cestu zpět k rovnováze.</p>
+    <div class="hero-btns">
+      <a href="#kontakt" class="btn-solid">Objednat konzultaci</a>
+      <a href="#metody" class="btn-line">Jak pracuji</a>
+    </div>
+    <div class="hero-chips">
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Certifikované terapeutické metody</span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Děti, dospělí i rodiny</span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Osobně i online</span>
+    </div>
+  </div>
+  <div class="hero-right" data-r="right">
+    <div class="hero-ram"></div>
+    <img class="hero-foto" src="photos/portret.jpg" alt="Marie Anna Roth ve své poradně">
+    <div class="hero-badge"><strong>Marie Anna Roth</strong><span>speciální pedagog &amp; terapeut</span></div>
+  </div>
+</section>
+
+<div class="quote-strip">
+  <blockquote>„Kdo si dnes neudělá čas na zdraví, bude si muset později udělat čas na nemoc a omezení svého života."</blockquote>
+</div>
+
+<!-- ONE BRAIN -->
+<section id="onebrain">
+  <div class="ob-grid">
+    <div data-r="left">
+      <img class="ob-foto" src="photos/ruce.jpg" alt="Terapie One Brain — podané ruce">
+    </div>
+    <div class="ob-text" data-r="right">
+      <div class="eyebrow">Kineziologie One Brain</div>
+      <h2 class="title">Když se energie znovu <em>rozproudí</em></h2>
+      <p>Terapeutická metoda One Brain vychází z poznání, že většina našich chybných přesvědčení a negativních emocí přerušuje tok energie v lidském těle. Vznikají tak bloky, které ovlivňují naši emoční pohodu i fyzické zdraví.</p>
+      <p>Při práci na daném problému a po odstranění negativního bloku zůstávají vzpomínky i identita stejné — vymizí pouze negativní reakce a emoční bolest, která byla s problémem spojena. Výsledek je trvalý: uvažujete stále stejně, ale už bez zbytečné negace a špatných voleb.</p>
+      <div class="ob-body">Pracovat lze se všemi věkovými kategoriemi — od malých dětí po seniory, včetně těhotných žen.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMATA -->
+<section id="temata">
+  <div class="eyebrow center" data-r>S čím pomáhám</div>
+  <h2 class="title" style="text-align:center;" data-r>Témata, se kterými <em>klienti přicházejí</em></h2>
+  <div class="tem-grid">
+    <div class="tem-card" data-r><h3>Úzkosti a obavy</h3><p>Panická porucha, sociální fobie, generalizovaná úzkost, obsedantně-kompulzivní porucha.</p></div>
+    <div class="tem-card" data-r><h3>Trauma v životě</h3><p>Životní ztráty, truchlení, následky nehod a traumatických situací, posttraumatická stresová porucha.</p></div>
+    <div class="tem-card" data-r><h3>Nálada a její změny</h3><p>Deprese, pocity beznaděje, smutku, vzteku či marnosti a jejich hlubší příčiny.</p></div>
+    <div class="tem-card" data-r><h3>Vztahy</h3><p>Potíže v partnerských, manželských i přátelských vztazích, nejistoty a pronásledování minulostí.</p></div>
+    <div class="tem-card" data-r><h3>Osobní růst</h3><p>Hledání sama sebe, práce se stresem a napětím, vyčerpání, existenciální otázky.</p></div>
+    <div class="tem-card" data-r><h3>Závislosti a návyky</h3><p>Cigarety, alkohol, vztahy — podpora při budování nových životních návyků.</p></div>
+    <div class="tem-card" data-r><h3>Problémy s učením</h3><p>Dyslexie, dyskalkulie, dysortografie, hyperaktivita — z pohledu speciálního pedagoga.</p></div>
+    <div class="tem-card" data-r><h3>Psychosomatika</h3><p>Odblokování emocionálních příčin potíží — alergie, ekzémy, migrény a další onemocnění.</p></div>
+    <div class="tem-card" data-r><h3>Asertivita a sebevědomí</h3><p>Dovednost odmítat, přijímat kritiku i pochvalu, říci si o pomoc a lépe se rozhodovat.</p></div>
+  </div>
+</section>
+
+<!-- METODY -->
+<section id="metody">
+  <div class="eyebrow center" data-r>Jak pracuji</div>
+  <h2 class="title" style="text-align:center;" data-r>Metody, které <em>propojuji</em></h2>
+  <p class="lead" style="margin:1rem auto 0;text-align:center;" data-r>Zvolený přístup vždy přizpůsobuji konkrétní situaci, se kterou přicházíte — ať jde o osobní život, výchovu dětí nebo rodinné vztahy.</p>
+  <div class="met-grid">
+    <div class="met-card" data-r>
+      <div class="met-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a5 5 0 0 1 5 5c0 2-1 3-1 3h-8s-1-1-1-3a5 5 0 0 1 5-5z"/><path d="M9 14h6M10 18h4M11 21h2"/></svg></div>
+      <h3>Psychoterapie &amp; One Brain</h3>
+      <p>Individuální terapie propojená s kineziologií One Brain. Nahlédnete do skrytých vzorců svého myšlení, lépe porozumíte sobě i vztahům a dosáhnete vnitřní svobody.</p>
+    </div>
+    <div class="met-card" data-r>
+      <div class="met-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></div>
+      <h3>Terapie traumatu</h3>
+      <p>Práce s traumatem se zaměřením na uvolnění blokád v energetických bodech těla — šetrně, ve vašem tempu a v bezpečném prostoru.</p>
+    </div>
+    <div class="met-card" data-r>
+      <div class="met-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></div>
+      <h3>Homeopatie &amp; fytoterapie</h3>
+      <p>Hledám lék, který vás stabilizuje a harmonizuje na úrovni fyzické, emoční i mentální. Celostní metoda uznaná Českou lékařskou komorou od roku 1993.</p>
+    </div>
+    <div class="met-card" data-r>
+      <div class="met-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg></div>
+      <h3>Biorezonanční diagnostika</h3>
+      <p>Přístroje HBS a Global Diagnostics poskytnou komplexní přehled o kondici organismu — energetické disbalance, zátěže i nedostatky minerálů.</p>
+    </div>
+    <div class="met-card" data-r>
+      <div class="met-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21c-5 0-8-3-8-8 0-6 6-11 18-11 0 10-5 16-10 18z"/><path d="M8 18c2-5 6-8 10-9"/></svg></div>
+      <h3>Výživové poradenství</h3>
+      <p>Žádné diety — revize návyků, díky které jdou kila dolů sama. Certifikovaný výživový poradce s podporou diagnostiky HBS.</p>
+    </div>
+    <div class="met-card" data-r>
+      <div class="met-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="10" r="2.2"/><path d="M3.5 21c0-3.5 2.4-5.5 5.5-5.5s5.5 2 5.5 5.5M14.6 15.9c.7-.3 1.5-.4 2.4-.4 2.5 0 4.5 1.6 4.5 4.5"/></svg></div>
+      <h3>Osobní konstelace traumatu</h3>
+      <p>Konstelační práce s traumatem podle výcviku u Radima Resse — pohled na hlubší souvislosti rodinného systému.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CENÍK -->
+<section id="cenik">
+  <div class="eyebrow center" data-r>Ceník</div>
+  <h2 class="title" style="text-align:center;" data-r>Transparentní ceny <em>bez překvapení</em></h2>
+  <div class="cen-tab" data-r>
+    <div class="cen-row"><div class="cen-nazev">Terapie, psychoterapie, kineziologie One Brain</div><div class="cen-pop">práce s vnitřním problémem, fyzickým či psychickým · 50–120 min</div><div class="cen-cena">1 500 Kč</div></div>
+    <div class="cen-row"><div class="cen-nazev">Homeopatická poradna</div><div class="cen-pop">konzultace stavu 40–90 min včetně podání či doporučení homeopatika nebo fytoterapeutika</div><div class="cen-cena">1 500 Kč</div></div>
+    <div class="cen-row"><div class="cen-nazev">Diagnostika přístrojem HBS</div><div class="cen-pop">měření a návrh léčebné terapie · 30–40 min, včetně doporučení fytoterapeutik</div><div class="cen-cena">500 Kč</div></div>
+    <div class="cen-row"><div class="cen-nazev">Global Diagnostics — diagnostika a terapie</div><div class="cen-pop">diagnostika 8 min + terapie 90–100 min · každá 11. terapie zdarma · samotná diagnostika 500 Kč</div><div class="cen-cena">2 000 Kč</div></div>
+    <div class="cen-row"><div class="cen-nazev">Určení vhodného homeopatika</div><div class="cen-pop">po měření biorezonančním přístrojem HBS</div><div class="cen-cena">500 Kč</div></div>
+    <div class="cen-row"><div class="cen-nazev">Víkendová osobní konzultace</div><div class="cen-pop">příplatek k ceně terapie</div><div class="cen-cena">+ 200 Kč</div></div>
+  </div>
+  <p class="cen-note" data-r>Nemůžete-li se dostavit, omluvte prosím termín co nejdříve — může ho využít jiný klient. Po předchozí telefonické domluvě je možná i online konzultace, vždy ve středu od 20:00.</p>
+</section>
+
+<!-- OHLASY -->
+<section id="ohlasy">
+  <div class="eyebrow center" data-r>Ohlasy klientů</div>
+  <h2 class="title" style="text-align:center;" data-r>Co říkají ti, kterým <em>terapie pomohla</em></h2>
+  <div class="oh-grid">
+    <div class="oh-card" data-r>Chtěla jsem Vám moc poděkovat za včerejší terapii. Jsem úplně nový člověk — mám energii něco dělat, nic mě nebolí a dokonce jsem se i vyspala. Už jsem zapomněla, jaké to je.<div class="oh-autor">Ludmila N.</div></div>
+    <div class="oh-card" data-r>Paní Rothová je milá a hlavně rozumí své práci. Zlepšila se mi nálada, přestal mě bolet kříž. Jsem ráda, že jsem se k paní dostala, a těším se na další návštěvu.<div class="oh-autor">S. K.</div></div>
+    <div class="oh-card" data-r>Moc bych Vám chtěla poděkovat za dceru, kterou jste během šesti sezení dala dohromady. Její úzkosti a strachy, s nimiž nám psycholožka nedokázala pomoci, jsou díky Vám pryč — a holka se znovu směje.<div class="oh-autor">Radka, maminka klientky</div></div>
+  </div>
+</section>
+
+<!-- O MNĚ -->
+<section id="omne">
+  <div class="om-grid">
+    <div data-r="left">
+      <img class="om-foto" src="photos/rodina.jpg" alt="Rodina při západu slunce" style="margin-bottom:1.2rem;">
+      <img class="om-foto" src="photos/fytoterapie.jpg" alt="Fytoterapie a homeopatie">
+    </div>
+    <div class="om-text" data-r="right">
+      <div class="eyebrow">O mně</div>
+      <h2 class="title">Marie Anna Roth — <em>speciální pedagog a terapeut</em></h2>
+      <p>Zaměřuji se na komplexní pomoc dětem, dospívajícím, dospělým a rodinám. Ke své práci využívám tři terapeutické systémy: kineziologii One Brain, terapii traumatu se zaměřením na uvolnění blokád v energetických bodech těla a integrativní psychoterapii podle Virginie Satirové. V případě potřeby je doplňuji o homeopatii, fytoterapii, nutriční poradenství či biorezonanci.</p>
+      <p>Často za mnou přicházejí klienti, kteří už absolvovali řadu sezení u psychologů, psychiatrů či v poradnách bolesti bez výraznějšího zlepšení. Propojení více přístupů umožňuje mnohdy problém zcela vyřešit, nebo ho posunout do přijatelných mezí.</p>
+      <ul class="om-vzd">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Výcvik kineziologie One Brain — I. až X. mistrovská úroveň</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Integrativní výcvik rodinné, párové a individuální terapie</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Konstelace terapie traumatu — Radim Ress, Praha</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Česká škola klasické homeopatie</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Speciální pedagogika — vychovatelství, učitelství pro 1. stupeň ZŠ</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Certifikovaný výživový poradce · Human Body Scanner</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="kon-grid">
+    <div data-r="left">
+      <div class="eyebrow">Kontakt a objednání</div>
+      <h2 class="title">Udělejte první krok <em>ke změně</em></h2>
+      <div class="kon-item">
+        <div class="kon-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <div><div class="kon-label">Poradna</div><div class="kon-val">Rohová 465/9, 289 24 Milovice</div></div>
+      </div>
+      <div class="kon-item">
+        <div class="kon-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div>
+        <div><div class="kon-label">Telefon</div><div class="kon-val"><a href="tel:+420777000602">+420 777 000 602</a></div></div>
+      </div>
+      <div class="kon-item">
+        <div class="kon-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+        <div><div class="kon-label">E-mail</div><div class="kon-val"><a href="mailto:info@ahomeopatie.cz">info@ahomeopatie.cz</a></div></div>
+      </div>
+      <div class="kon-item">
+        <div class="kon-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div><div class="kon-label">Online konzultace</div><div class="kon-val">Po telefonické domluvě, středa od 20:00</div></div>
+      </div>
+      <div class="mapa"><iframe src="https://www.openstreetmap.org/export/embed.html?bbox=14.8843%2C50.2250%2C14.9043%2C50.2350&layer=mapnik&marker=50.2300%2C14.8943" loading="lazy" title="Mapa — poradna Milovice"></iframe></div>
+    </div>
+    <div data-r="right">
+      <form class="form" id="obj-form">
+        <div class="form-row">
+          <div class="fg"><label>Jméno</label><input type="text" placeholder="Vaše jméno"></div>
+          <div class="fg"><label>Telefon</label><input type="tel" placeholder="+420…"></div>
+        </div>
+        <div class="fg"><label>Co vás trápí</label>
+          <select>
+            <option>Terapie / psychoterapie One Brain</option>
+            <option>Terapie traumatu</option>
+            <option>Homeopatická poradna</option>
+            <option>Diagnostika HBS</option>
+            <option>Global Diagnostics</option>
+            <option>Výživové poradenství</option>
+            <option>Nevím, potřebuji poradit</option>
+          </select>
+        </div>
+        <div class="fg"><label>Zpráva</label><textarea placeholder="Krátce popište, s čím byste potřebovali pomoci…"></textarea></div>
+        <button type="submit" class="form-btn">Odeslat poptávku</button>
+        <p style="font-size:.76rem;color:var(--ink2);margin-top:.9rem;text-align:center;">Vše, co sdělíte, je považováno za přísně důvěrné.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <a href="#" class="foot-logo">Marie Anna Roth<span style="color:var(--fial-sv);">.</span></a>
+      <p style="font-size:.88rem;margin-top:.8rem;max-width:320px;">Psychoterapie s celostními metodami a přístupy. Kineziologie One Brain, terapie traumatu, homeopatie a biorezonanční diagnostika.</p>
+    </div>
+    <div>
+      <h4>Rychlé odkazy</h4>
+      <ul>
+        <li><a href="#onebrain">One Brain</a></li>
+        <li><a href="#metody">Metody</a></li>
+        <li><a href="#cenik">Ceník</a></li>
+        <li><a href="#kontakt">Objednání</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Kontakt</h4>
+      <ul>
+        <li>Rohová 465/9, Milovice</li>
+        <li><a href="tel:+420777000602">+420 777 000 602</a></li>
+        <li><a href="mailto:info@ahomeopatie.cz">info@ahomeopatie.cz</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Marie Anna Roth · Vytvořeno s ❤️ od <a href="https://strankyprovas.cz">StránkyProVás</a></span>
+    <span>Všechna práva vyhrazena</span>
+  </div>
+</footer>
+
+<script>
+const ham = document.getElementById('ham'), mNav = document.getElementById('mobile-nav');
+ham.addEventListener('click', () => mNav.classList.add('open'));
+document.getElementById('close-nav').addEventListener('click', () => mNav.classList.remove('open'));
+mNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mNav.classList.remove('open')));
+
+const revObs = new IntersectionObserver(es => { es.forEach((e,i) => { if(e.isIntersecting){ setTimeout(() => e.target.classList.add('visible'), i*60); revObs.unobserve(e.target); } }); }, {threshold:.12});
+document.querySelectorAll('[data-r]').forEach(el => revObs.observe(el));
+
+const form = document.getElementById('obj-form');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const v = s => form.querySelector(s)?.value || '';
+  const body = `Dobrý den,%0D%0Arád(a) bych se objednal(a).%0D%0A%0D%0AJméno: ${encodeURIComponent(v('input[type=text]'))}%0D%0ATelefon: ${encodeURIComponent(v('input[type=tel]'))}%0D%0ATéma: ${encodeURIComponent(v('select'))}%0D%0A%0D%0A${encodeURIComponent(v('textarea'))}`;
+  location.href = `mailto:info@ahomeopatie.cz?subject=${encodeURIComponent('Objednání konzultace z webu')}&body=${body}`;
+});
+</script>
+</body>
+</html>
