@@ -52,6 +52,11 @@
     .nav-links { display: flex; gap: .3rem; list-style: none; }
     .nav-links a { text-decoration: none; font-size: .9rem; color: var(--ink2); padding: .5rem .85rem; border-radius: 999px; transition: .25s; }
     .nav-links a:hover { background: var(--lila2); color: var(--fial-tm); }
+    .nav-drop { position: relative; }
+    .nav-drop > a::after { content: " ▾"; font-size: .7em; }
+    .nav-drop-menu { position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: .4rem; min-width: 190px; display: none; box-shadow: 0 14px 34px rgba(75,53,119,.14); z-index: 50; }
+    .nav-drop:hover .nav-drop-menu, .nav-drop:focus-within .nav-drop-menu { display: block; }
+    .nav-drop-menu a { display: block; }
     .nav-cta { background: var(--fial); color: #fff !important; border-radius: 999px; padding: .6rem 1.5rem !important; font-weight: 500; text-decoration: none; font-size: .88rem; transition: .25s; }
     .nav-cta:hover { background: var(--fial-tm) !important; }
     .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
@@ -189,8 +194,12 @@
 <nav id="navbar">
   <a href="#" class="nav-logo">Mgr. Marie Anna Roth<span>.</span></a>
   <ul class="nav-links">
-    <li><a href="#onebrain">One Brain</a></li>
-    <li><a href="#satirova">Satirová</a></li>
+    <li class="nav-drop"><a href="#onebrain">Terapie</a>
+      <div class="nav-drop-menu">
+        <a href="#onebrain">Kineziologie One Brain</a>
+        <a href="#satirova">Satirová psychoterapie</a>
+      </div>
+    </li>
     <li><a href="#temata">S čím pomáhám</a></li>
     <li><a href="#metody">Metody</a></li>
     <li><a href="#cenik">Ceník</a></li>
@@ -305,7 +314,7 @@
     <div class="met-card" data-r>
       <div class="met-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></div>
       <h3>Homeopatie &amp; fytoterapie</h3>
-      <p>Hledám lék, který vás stabilizuje a harmonizuje na úrovni fyzické, emoční i mentální. Celostní metoda uznaná Českou lékařskou komorou od roku 1993.</p>
+      <p>Hledání vhodného homeopatika, které vás stabilizuje a harmonizuje na úrovni fyzické, emoční i mentální. Celostní metoda uznaná Českou lékařskou komorou od roku 1993.</p>
     </div>
     <div class="met-card" data-r>
       <div class="met-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg></div>
@@ -352,21 +361,23 @@
 <!-- O MNĚ -->
 <section id="omne">
   <div class="om-grid">
-    <div data-r="left">
-      <img class="om-foto" src="photos/portret-venku.jpg" alt="Mgr. Marie Anna Roth">
-    </div>
-    <div class="om-text" data-r="right">
+    <div class="om-text" data-r="left">
       <div class="eyebrow">O mně</div>
       <h2 class="title">Mgr. Marie Anna Roth — <em>speciální pedagog a terapeut</em></h2>
       <p>Zaměřuji se na komplexní pomoc dětem, dospívajícím, dospělým a rodinám. Ke své práci využívám tři terapeutické systémy: kineziologii One Brain, terapii traumatu se zaměřením na uvolnění blokád v energetických bodech těla a integrativní psychoterapii podle Virginie Satirové. V případě potřeby je doplňuji o homeopatii, fytoterapii, nutriční poradenství či biorezonanci.</p>
       <p>Často za mnou přicházejí klienti, kteří už absolvovali řadu sezení u psychologů, psychiatrů či v poradnách bolesti bez výraznějšího zlepšení. Propojení více přístupů umožňuje mnohdy problém zcela vyřešit, nebo ho posunout do přijatelných mezí.</p>
-      <ul class="om-vzd">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Výcvik kineziologie One Brain — I. až X. mistrovská úroveň</li>
+    </div>
+    <div data-r="right">
+      <div class="eyebrow">Vzdělání a výcviky</div>
+      <ul class="om-vzd" style="margin-top:1rem;">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Integrativní výcvik rodinné, párové a individuální terapie</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Konstelace terapie traumatu — Radim Ress, Praha</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Česká škola klasické homeopatie</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Speciální pedagogika — vychovatelství, učitelství pro 1. stupeň ZŠ</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Kurzy I, II, III Human Design pro ČR a SR — strategie našeho těla</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Kurzy terapie kineziologie Proměna — Carol Ann Hontz</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Výcvik kineziologie One Brain — I. až X. mistrovská úroveň</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Konstelace terapie traumatu — Radim Ress, Praha · Rodinné konstelace — Mgr. Miroslava Rutová, Plzeň</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Speciální pedagogika pro děti, žáky a studenty se speciálními vzdělávacími potřebami; pedagogika předškolního věku a učitelství</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Certifikovaný výživový poradce · Human Body Scanner</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Česká škola klasické homeopatie</li>
       </ul>
     </div>
   </div>
@@ -401,7 +412,7 @@
         </div>
         <div class="fg"><label>Co vás trápí</label>
           <select>
-            <option>Terapie / psychoterapie One Brain</option>
+            <option>Psychoterapie / Terapie One Brain</option>
             <option>Terapie traumatu</option>
             <option>Homeopatická poradna</option>
             <option>Měření přístrojem HBS</option>
@@ -427,8 +438,12 @@
     <div>
       <h4>Rychlé odkazy</h4>
       <ul>
-        <li><a href="#onebrain">One Brain</a></li>
-    <li><a href="#satirova">Satirová</a></li>
+        <li class="nav-drop"><a href="#onebrain">Terapie</a>
+      <div class="nav-drop-menu">
+        <a href="#onebrain">Kineziologie One Brain</a>
+        <a href="#satirova">Satirová psychoterapie</a>
+      </div>
+    </li>
         <li><a href="#metody">Metody</a></li>
         <li><a href="#cenik">Ceník</a></li>
         <li><a href="#kontakt">Objednání</a></li>
@@ -443,6 +458,7 @@
       </ul>
     </div>
   </div>
+  <p style="max-width:1180px;margin:2rem auto 0;font-size:.78rem;color:#e6def5;opacity:.85;">Obsah tohoto webu neslouží ke stanovení diagnózy a nenahrazuje odbornou zdravotní péči poskytovanou podle platných právních předpisů České republiky.</p>
   <div class="foot-bottom">
     <span>© 2026 Mgr. Marie Anna Roth · Vytvořeno s ❤️ od <a href="https://strankyprovas.cz">StránkyProVás</a></span>
     <span>Všechna práva vyhrazena</span>
